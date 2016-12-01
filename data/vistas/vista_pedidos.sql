@@ -17,4 +17,4 @@ SELECT
 FROM `pedidos`
 LEFT JOIN `users` AS `ventas` ON `pedidos`.`vendedor`= `ventas`.`id`
 LEFT JOIN `users` AS `despacho` ON `pedidos`.`despachador`= `despacho`.`id`
-LEFT JOIN `estatus_pedido` ON `pedidos`.`estatus`= `estatus_pedido`.`id`
+LEFT JOIN `estatus_pedido` ON `pedidos`.`estatus`= `estatus_pedido`.`id`;

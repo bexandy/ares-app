@@ -19,7 +19,7 @@ return array(
         'HtImgModule',
         'BjyAuthorize',
         'Application',
-        'Blog',
+        //'Blog',
         'Productos',
         'Pedidos',
         'Almacen',
@@ -51,6 +51,9 @@ return array(
         'config_glob_paths' => array(
             'config/autoload/{{,*.}global,{,*.}local}.php',
         ),
+        'config_cache_enabled'     => true,
+        'module_map_cache_enabled' => true,
+        'cache_dir'                => 'data/cache/',
 
         // Whether or not to enable a configuration cache.
         // If enabled, the merged configuration will be cached and used in
