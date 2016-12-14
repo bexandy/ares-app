@@ -22,7 +22,7 @@ use ZfcUser\Options\ModuleOptions;
 
 class UsuarioMapper
 {
-    protected $tableName = 'users';
+    protected $tableName = 'user';
     protected $dbAdapter;
     protected $sql;
     protected $zfcUserOptions;

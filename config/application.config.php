@@ -8,25 +8,19 @@
 return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
-        //'DoctrineModule',
-        //'DoctrineORMModule',
         'ZfcBase',
         'ZfcUser',
-        //'ZfcUserDoctrineORM',
         'ZfcAdmin',
-        //'ZfcUserAdmin',
         'HtProfileImage',
         'HtImgModule',
         'BjyAuthorize',
         'Application',
-        //'Blog',
         'Productos',
         'Pedidos',
         'Almacen',
         'Despacho',
-        //'StickyNotes',
-        'ZendDeveloperTools',
-        'SanSessionToolbar',
+        //'ZendDeveloperTools',
+        //'SanSessionToolbar',
         'TestAjax',
         'Reportes',
         'EdpSuperluminal',
@@ -53,8 +47,8 @@ return array(
         'config_glob_paths' => array(
             'config/autoload/{{,*.}global,{,*.}local}.php',
         ),
-        'config_cache_enabled'     => false,
-        'module_map_cache_enabled' => false,
+        'config_cache_enabled'     => true,
+        'module_map_cache_enabled' => true,
         'cache_dir'                => 'data/cache/',
 
         // Whether or not to enable a configuration cache.

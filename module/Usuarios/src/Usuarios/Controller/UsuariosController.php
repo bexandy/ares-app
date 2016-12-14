@@ -69,37 +69,6 @@ class UsuariosController extends AbstractActionController
         return $this->usuarioMapper;
     }
 
-    public function getOptionsImage()
-    {
-        if (!$this->optionsImage) {
-            $this->optionsImage = $this->getServiceLocator()->get('HtProfileImage\ModuleOptions');
-        }
-
-        return $this->options;
-    }
-
-    public function getOptions()
-    {
-        if (!$this->options instanceof ModuleOptions) {
-            $this->setOptions($this->getServiceLocator()->get('zfcuseradmin_module_options'));
-        }
-        return $this->options;
-    }
-
-    public function setOptions(ModuleOptions $options)
-    {
-        $this->options = $options;
-        return $this;
-    }
-
-    public function getAdminUserService()
-    {
-        if (null === $this->adminUserService) {
-            $this->adminUserService = $this->getServiceLocator()->get('zfcuseradmin_user_service');
-        }
-        return $this->adminUserService;
-    }
-
     public function editAction()
     {
         $userId = $this->getEvent()->getRouteMatch()->getParam('userId');

@@ -17,6 +17,7 @@ use Zend\View\Model\ViewModel;
 class IndexController extends AbstractActionController
 {
     protected $userMapper;
+    protected $roleMapper;
 
     public function indexAction()
     {
@@ -425,26 +426,33 @@ class IndexController extends AbstractActionController
     public function listarDespachadores()
     {
         $userMapper = $this->getUserMapper();
-        $users = $userMapper->findAll();
+        $users = $userMapper->fetchAll();
 
         foreach ($users as $user)
         {
-            $roles =$user->getRoles();
-            foreach ($roles as $rol) {
-                $rolId = $rol->getRoleId();
+            $roles = $this->getRoleMapper()->getRolesById($user->getId());
+                $rolId = $roles->getRoleId();
 
                 if ($rolId === 'despachador'){
                     $despachadores[] = $user;
                 }
-            }
+
         }
         return $despachadores;
+    }
+
+    public function getRoleMapper()
+    {
+        if (null === $this->roleMapper) {
+            $this->roleMapper = $this->getServiceLocator()->get('RoleMapper');
+        }
+        return $this->roleMapper;
     }
 
     public function getUserMapper()
     {
         if (null === $this->userMapper) {
-            $this->userMapper = $this->getServiceLocator()->get('zfcuser_user_mapper');
+            $this->userMapper = $this->getServiceLocator()->get('UsuarioMapper');
         }
         return $this->userMapper;
     }

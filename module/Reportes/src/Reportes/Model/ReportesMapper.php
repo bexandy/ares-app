@@ -44,7 +44,7 @@ class ReportesMapper
             'estatus' => 'estatus',
         ));
 
-        $select->join('users', 'users.id = pedidos.despachador', array('despachador' => 'displayName'), 'left');
+        $select->join('user', 'user.user_id = pedidos.despachador', array('despachador' => 'display_name'), 'left');
 
         $select->where(array('estatus' => 4));
         $select->where->AND->between("fecha",$dateDesde,$dateHasta);
@@ -80,7 +80,7 @@ class ReportesMapper
             'estatus' => 'estatus',
         ));
 
-        $select->join('users', 'users.id = pedidos.despachador', array('despachador' => 'displayName'), 'left');
+        $select->join('user', 'user.user_id = pedidos.despachador', array('despachador' => 'display_name'), 'left');
 
         $select->where(array('estatus' => 4));
         $select->where->AND->between("fecha",$dateDesde,$dateHasta);
