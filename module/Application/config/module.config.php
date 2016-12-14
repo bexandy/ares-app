@@ -76,8 +76,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Auth' => 'Application\Controller\AuthController',
-            'Application\Controller\Success' => 'Application\Controller\SuccessController'
+            'Application\Controller\Usuarios' => 'Application\Controller\UsuariosController',
         ),
     ),
     'view_manager' => array(
@@ -115,46 +114,12 @@ return array(
                 'route' => 'application/default',
                 'controller' => 'index',
                 'action' => 'tienda',
-                'pages' => array(
-                    array(
-                        'label' => 'Pedidos',
-                        'route' => 'pedido',
-                        'action' => 'index',
-                    ),
-                    array(
-                        'label' => 'Despacho',
-                        'route' => 'pedido',
-                        'action' => 'index',
-                    ),
-                    array(
-                        'label' => 'Clientes',
-                        'route' => 'pedido',
-                        'action' => 'index',
-                    ),
-                ),
             ),
             array(
                 'label' => 'Administración',
                 'route' => 'application/default',
                 'controller' => 'index',
                 'action' => 'admin',
-                'pages' => array(
-                    array(
-                        'label' => 'Administracion',
-                        'route' => 'pedido',
-                        'action' => 'index',
-                    ),
-                    array(
-                        'label' => 'Reportes',
-                        'route' => 'pedido',
-                        'action' => 'index',
-                    ),
-                    array(
-                        'label' => 'Clientes',
-                        'route' => 'pedido',
-                        'action' => 'index',
-                    ),
-                ),
             ),
             array(
                 'label' => 'Reportes',
@@ -163,6 +128,7 @@ return array(
 
         ),
     ),
+    /*
     'doctrine' => array(
         'driver' => array(
             'application_entities' => array(
@@ -177,4 +143,5 @@ return array(
             ),
         ),
     ),
+    */
 );

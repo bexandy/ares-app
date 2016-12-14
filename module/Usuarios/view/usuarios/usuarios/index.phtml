@@ -1,0 +1,85 @@
+<?php echo $this->headLink()->prependStylesheet($this->basePath('/css/tablas/csstables.css')); ?>
+
+
+<div class="container">
+    <div class="text-center box">
+        <div class="row placeholders">
+            <div class="col-xs-2 col-sm-2 col-md-2 placeholder"></div>
+            <div class="col-xs-8 col-sm-8 col-md-8 placeholder">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center"><h1><?php echo $this->translate('Lista de Usuarios') ?></h1></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Imagen</th>
+                                        <th>Usuario</th>
+                                        <th>Nombre</th>
+                                        <th>Rol</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($this->users as $user): ?>
+                                        <tr>
+                                            <td class="cell cell-id">
+                                                <?php echo $user->getId() ?>
+                                            </td>
+                                            <td class="cell cell-ctrls">
+                                                <?php echo $this->htProfileImage($user) ?>
+                                            </td>
+                                            <td class="cell cell-username">
+                                                <?php echo $user->getUsername() ?>
+                                            </td>
+                                            <td class="cell cell-displayname">
+                                                <?php echo utf8_encode($user->getDisplayName()) ?>
+                                            </td>
+                                            <td class="cell cell-ctrls">
+                                                <?php $roles = $user->getRoles();
+                                                foreach ($roles as $rol) {
+                                                    $rolId = $rol->getRoleId();
+                                                    echo $rolId;
+                                                }
+                                                ?>
+                                            </td>
+                                            <td class="cell cell-ctrls">
+                                                <a href="<?php echo $this->url('usuarios/edit', array('userId' => $user->getId())); ?>">
+                                                    <?php echo $this->translate('Editar') ?>
+                                                </a>
+                                                |
+                                                <a href="<?php echo $this->url('usuarios/remove', array('userId' => $user->getId())); ?>"
+                                                   onclick="return confirm('<?php echo $this->translate('Really delete user?') ?>')">
+                                                    <?php echo $this->translate('Eliminar') ?>
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer text-center">
+                        <div class="navbar filter-bar">
+                            <div class="navbar-inner">
+                                <div class="pull-right">
+                                    <a href="<?php echo $this->url('usuarios/create') ?>" class="btn btn-primary">
+                                        <?php echo $this->translate('Crear Nuevo Usuario') ?>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 placeholder"></div>
+        </div>
+    </div>
+</div>

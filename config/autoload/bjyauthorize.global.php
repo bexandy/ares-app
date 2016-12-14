@@ -9,15 +9,30 @@ return array(
     'bjyauthorize' => array(
         'default_role' => 'guest',
         'login_redirect_route' => '/',
-        'identity_provider'  => 'BjyAuthorize\Provider\Identity\AuthenticationIdentityProvider',
+        //'identity_provider'  => 'BjyAuthorize\Provider\Identity\AuthenticationIdentityProvider',
+        'identity_provider'     => 'BjyAuthorize\Provider\Identity\ZfcUserZendDb',
         'role_providers' => array(
+            /*
             'BjyAuthorize\Provider\Role\ObjectRepositoryProvider' => array(
                 'object_manager' => 'doctrine.entitymanager.orm_default',
                 'role_entity_class' => 'Application\Entity\Role',
             ),
+            */
             'BjyAuthorize\Provider\Role\Config' => array(
                 'guest' => array(),
             ),
+            'BjyAuthorize\Provider\Role\ZendDb' => array(
+                'table'                 => 'user_role',
+                'identifier_field_name' => 'id',
+                'role_id_field'         => 'roleId',
+                'parent_role_field'     => 'parent_id',
+            ),
+            /*
+            'BjyAuthorize\Provider\Role\ObjectRepositoryProvider' => array(
+                'role_entity_class' => 'Application\Entity\Role',
+                'object_manager'    => 'doctrine.entitymanager.orm_default',
+            ),
+            */
         ),
         'resource_providers' => array(
             'BjyAuthorize\Provider\Resource\Config' => array(
@@ -86,6 +101,10 @@ return array(
                 ),
                 array(
                     'controller' => array('Almacen\Controller\Traslado'),
+                    'roles' => array('administrador')
+                ),
+                array(
+                    'controller' => array('Usuarios\Controller\Usuarios'),
                     'roles' => array('administrador')
                 ),
                 array('controller' => 'zfcuser', 'roles' => array()),

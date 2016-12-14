@@ -1,0 +1,11 @@
+<?php echo $this->form()->openTag($form) ?>
+    <dl class="zend_form">
+            <?php echo $this->formHidden($form->get('id'));?>
+            <?php echo $this->formHidden($form->get('rolId'));?>
+                <dt><?php echo $this->formRow($form->get('username')); ?></dt>
+                <dd><?php echo $this->formRow($form->get('display_name')); ?></dd>
+            <dd><?php echo $this->formRow($form->get('select_roles')); ?></dd>
+            <dd><?php echo $this->formRow($form->get('password')); ?></dd>
+    </dl>
+<?php echo $this->formElement($form->get('submit')); ?>
+<?php echo $this->form()->closeTag() ?>

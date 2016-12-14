@@ -47,13 +47,6 @@ $form->setAttribute('class', 'form-signin');
                 <?php endforeach; ?>
                 <?php echo $this->form()->closeTag() ?>
 
-
-                <?php if ($this->enableRegistration) : ?>
-                    <div class="text-center">
-                        <?php echo $this->translate('Not registered?'); ?> <a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect='.$this->escapeUrl($this->redirect) : '') ?>"><?php echo $this->translate('Sign up!'); ?></a>
-                    </div>
-                <?php endif; ?>
-
             </div>
         </div>
     </div>

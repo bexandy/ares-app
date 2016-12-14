@@ -79,10 +79,10 @@ class PedidoFilter extends InputFilter
                     'name' => 'StringLength',
                     'options' => array(
                         'encoding' => 'UTF-8',
-                        'max' => 100
+                        'max' => 100,
+                        ),
                     ),
                 ),
-            ),
         ));
     }
 }

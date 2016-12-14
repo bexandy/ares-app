@@ -1,0 +1,59 @@
+<?php echo $this->headScript()->appendFile($this->basePath().'/js/modules/usuarios/editar-usuario.js'); ?>
+<?php
+$form = $this->editUserForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('usuarios/edit', array('userId' => $this->userId)));
+$form->setAttribute('method', 'post');
+$formImage->prepare();
+?>
+
+
+<div class="row">
+    <div class="col-sm-3 col-md-3"></div>
+    <div class="col-sm-6 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading text-center"><h1>Editar Usuario</h1></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <div style="float:left; padding-right:16px; padding-bottom: 20px;"><?php echo $this->htProfileImage($this->userId) ?></div>
+                        <br><br>
+
+                        <?php echo $this->form()->openTag($formImage); ?>
+                        <?php echo $this->formElement($formImage->get('image')) . $this->formElementErrors($formImage->get('image')); ?>
+                        <br/>
+                        <?php echo $this->formElement($formImage->get('submit')); ?>
+                        <?php echo $this->form()->closeTag($formImage); ?>
+                        <br/>
+                        <br/>
+                        <?php if ($imageUploaded): ?>
+                            <div class="alert alert-success"><?php echo $this->translate("Imagen Cargada Correctamente") ?></div>
+                        <?php endif; ?>
+
+                    </div>
+                    <div class="col-sm-8 col-md-8">
+                        <div class="well">
+                            <?php include '_form.phtml'; ?>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="panel-footer text-center">
+
+                <div class="row">
+                    <a href="<?php echo $this->url('usuarios');?>" class="btn btn-default">Volver</a>
+                    <a href="<?php echo $this->url('usuarios/remove', array('userId' => $this->userId)); ?>"
+                       onclick="return confirm('<?php echo $this->translate('Confirma que desea eliminar el usuario?') ?>')" class="btn btn-danger">
+                        <?php echo $this->translate('Eliminar') ?>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3"></div>
+</div>

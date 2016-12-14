@@ -26,7 +26,6 @@ class Module
         $moduleRouteListener->attach($eventManager);
 
         $strategy = new RedirectionStrategy();
-        //$strategy->setRedirectRoute('/home');
         $eventManager->attach($strategy);
 
         $translator = $e->getApplication()->getServiceManager()->get('translator');

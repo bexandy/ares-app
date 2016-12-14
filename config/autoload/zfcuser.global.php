@@ -6,16 +6,18 @@
  * Time: 07:28 PM
  */
 $settings = array(
-    //'zend_db_adapter' => 'Zend\Db\Adapter\Adapter',
-    'user_entity_class' => 'Application\Entity\User',
+    'zend_db_adapter' => 'Zend\Db\Adapter\Adapter',
+    //'user_entity_class' => 'Application\Entity\User',
     'enable_default_entities' => false,
     'enable_username' => true,
     'auth_identity_fields' => array( 'username' ),
     'login_redirect_route' => 'home',
     'use_redirect_parameter_if_present' => true,
     'enable_display_name' => true,
+    'auth_adapters' => array(
+        100 => 'ZfcUser\Authentication\Adapter\Db',
+    ),
 
-    //'auth_adapters' => array( 100 => 'ZfcUser\Authentication\Adapter\Db' ),
 
 );
 
