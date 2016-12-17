@@ -31,7 +31,7 @@ class UnidadMedidaForm extends Form
             'type'  =>  'text',
             'name'  =>  'nombre',
             'options'   =>  array(
-                'label' =>  'Nombre de la Unidad de Medida',
+                'label' =>  'Nombre',
             ),
         ));
 
@@ -39,7 +39,7 @@ class UnidadMedidaForm extends Form
             'type'  =>  'text',
             'name'  =>  'abreviatura',
             'options'   =>  array(
-                'label' =>  'Abreviatura de la Unidad de Medida',
+                'label' =>  'Abreviatura',
             ),
         ));
 
@@ -47,7 +47,7 @@ class UnidadMedidaForm extends Form
             'type'  =>  'text',
             'name'  =>  'simbolo',
             'options'   =>  array(
-                'label' =>  'Símbolo de la Unidad de Medida',
+                'label' =>  'Símbolo',
             ),
         ));
 

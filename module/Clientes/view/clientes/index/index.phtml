@@ -1,0 +1,55 @@
+<?php
+$title = 'Despacho';
+$this->headTitle($title);
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading text-center"><h4>Pedidos en Cola</h4></div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <?php foreach ($pedidosCola as $pedido): ?>
+                            <li class="list-group-item text-center text-primary well texto-grande">
+                                Pedido: <?php echo $pedido->getCodigo(); ?> <br>
+                                Cliente: <?php echo $pedido->getCliente(); ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8 col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center"><h2>Pedidos en Despacho</h2></div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <?php foreach ($pedidosDespacho as $pedido): ?>
+
+                                <li class="list-group-item text-center text-primary well">
+                                    <div class="row">
+
+                                        <div class="col-sm-8 col-md-8 text-center">
+                                            <h2 class="text-danger">Pedido: <?php echo $pedido->getCodigo(); ?></h2>
+                                                <h1 class="text-uppercase"><?php echo $pedido->getCliente(); ?></h1>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="col-sm-4 col-md-4 text-right ">Atendido por:</div>
+                                            <div class="col-sm-8 col-md-8 text-left"><?php echo $this->htProfileImage($pedido->getDespachador()) ?><br>
+                                                <?php echo $pedido->getNombdespachador(); ?></div>
+
+                                        </div>
+                                    </div>
+                                </li>
+
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

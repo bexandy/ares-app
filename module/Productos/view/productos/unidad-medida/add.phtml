@@ -1,44 +1,65 @@
-<div class="well">
 <?php
 $title = 'Crear Nueva Unidad de Medida';
 $this->headTitle($title);
 ?>
-    <h1><?php echo $this->escapeHtml($title); ?></h1>
 
-<?php
-$form = $this->form;
-$form->setAttribute('action', $this->url('unidad-medida', array('action' => 'add')));
-$form->get('submit')->setAttribute('value', 'Add');
-$form->prepare();
+<div class="row">
+    <div class="col-sm-4 col-md-4"></div>
+    <div class="col-sm-4 col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><?php echo $this->escapeHtml($title); ?></div>
+            <div class="panel-body">
+                <div class="well">
 
-echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-?>
-<div class="row text-center">
-    <div class="col-sm-12 col-md-12">
-        <?php echo $this->formRow($form->get('nombre')); ?>
-    </div>
-</div>
 
-<div class="row text-center">
-        <div class="col-sm-6 col-md-6">
-            <div class="form-group row">
-                <?php echo $this->formRow($form->get('abreviatura')); ?>
+                    <?php
+                    $form = $this->form;
+                    $form->setAttribute('action', $this->url('unidad-medida', array('action' => 'add')));
+                    $form->get('submit')->setAttribute('value', 'Nuevo');
+                    $form->prepare();
+
+                    echo $this->form()->openTag($form);
+                    echo $this->formHidden($form->get('id'));
+                    ?>
+
+                    <div class="row text-center">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="form-group row">
+                                <?php echo $this->formRow($form->get('abreviatura')); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="form-group row">
+                                <?php echo $this->formRow($form->get('simbolo')); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <div class="col-sm-12 col-md-12">
+                            <?php echo $this->formRow($form->get('nombre')); ?>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="panel-footer text-center">
+                <a href="<?php echo $this->url('unidad-medida'); ?>" class="btn btn-default">Volver</a>
+                <?php echo $this->formInput($form->get('submit')); ?>
+                <?php echo $this->form()->closeTag($form); ?>
             </div>
         </div>
-
-        <div class="col-sm-6 col-md-6">
-            <div class="form-group row">
-                <?php echo $this->formRow($form->get('simbolo')); ?>
-            </div>
-        </div>
-</div>
-
-<div class="row text-center">
-    <div class="col-sm-12 col-md-12">
-        <?php echo $this->formInput($form->get('submit')); ?>
     </div>
+    <div class="col-sm-4 col-md-4"></div>
 </div>
 
-<?php echo $this->form()->closeTag($form); ?>
-</div>
+
+
+
+
+

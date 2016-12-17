@@ -9,10 +9,13 @@
 namespace Productos\Controller;
 
 use Productos\Form\CategoriaForm;
+use Productos\Form\FileUploadFilter;
 use Productos\Model\CategoriaEntity;
+use Zend\File\Transfer\Adapter\Http;
 use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\Router\RouteMatch;
+use Zend\Validator\File\Size;
 use Zend\View\Model\ViewModel;
 
 class CategoriaController extends AbstractActionController
@@ -20,7 +23,11 @@ class CategoriaController extends AbstractActionController
     public function indexAction()
     {
         $mapper = $this->getCategoriaMapper();
-        return new ViewModel(array('categorias' => $mapper->fetchAll()));
+        $paginator = $mapper->fetchAll(true);
+        $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+        $paginator->setItemCountPerPage(8);
+
+        return new ViewModel(array('paginator' => $paginator));
     }
 
     public function selectAction()
@@ -73,15 +80,53 @@ class CategoriaController extends AbstractActionController
         $form = new CategoriaForm();
         $categoria = new CategoriaEntity();
         $form->bind($categoria);
+        $fileUploadFilter = new FileUploadFilter();
+        $form->setInputFilter($fileUploadFilter->getInputFilter());
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $form->setData($request->getPost());
+            $File = $this->params()->fromFiles('fileupload');
+            $data    = array_merge_recursive(
+                $this->getRequest()->getPost()->toArray(),
+                $this->getRequest()->getFiles()->toArray()
+            );
+            $form->setData($data);
             if ($form->isValid()) {
-                $this->getCategoriaMapper()->saveCategoria($categoria);
+                $size = new Size(array('max' => 2000000));
 
-                // Redirect to list of productos
-                return $this->redirect()->toRoute('categoria');
+                $adapter = new Http();
+                $adapter->setValidators(array($size),$File['name']);
+                $adapter->setOptions(array('ignoreNoFile'=>true));
+
+                if (!$adapter->isValid())
+                {
+                    $dataError = $adapter->getMessages();
+                    $error = array();
+                    foreach ($dataError as $key => $row) {
+                        $error[] = $row;
+                    }
+                    $form->setMessages(array('fileupload' => $error));
+                } else {
+                    if ($File['error'] !== 4) {
+                        $adapter->setDestination(dirname(PUBLIC_PATH) . '/public/img/productos/tmp');
+                        $tmp_pre = str_replace('/tmp/', '', $File['tmp_name']);
+                        $file_name = $tmp_pre . '_' . $File['name'];
+                        if ($adapter->receive($file_name)) {
+                            $imagen = $adapter->getFileName();
+                            $thumbnailer = $this->getServiceLocator()->get('WebinoImageThumb');
+                            $thumb = $thumbnailer->create($imagen, $options = [], $plugins = []);
+
+                            $thumb->adaptiveResize(100, 72);
+                            $thumb_name = dirname(PUBLIC_PATH) . '/public/img/marcas/thumb_' . $File['name'];
+
+                            $thumb->save($thumb_name);
+                            $rutaImagen = str_replace(PUBLIC_PATH, '', $thumb_name);
+                            $categoria->setImagen($rutaImagen);
+                        }
+                    }
+                    $this->getCategoriaMapper()->saveCategoria($categoria);
+                    return $this->redirect()->toRoute('categoria');
+                }
             }
         }
 
@@ -98,14 +143,53 @@ class CategoriaController extends AbstractActionController
 
         $form = new CategoriaForm();
         $form->bind($categoria);
+        $fileUploadFilter = new FileUploadFilter();
+        $form->setInputFilter($fileUploadFilter->getInputFilter());
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $form->setData($request->getPost());
+            $File = $this->params()->fromFiles('fileupload');
+            $data = array_merge_recursive(
+                $this->getRequest()->getPost()->toArray(),
+                $this->getRequest()->getFiles()->toArray()
+            );
+            $form->setData($data);
             if ($form->isValid()) {
-                $this->getCategoriaMapper()->saveCategoria($categoria);
+                $size = new Size(array('max' => 2000000));
 
-                return $this->redirect()->toRoute('categoria');
+                $adapter = new Http();
+                $adapter->setValidators(array($size), $File['name']);
+                $adapter->setOptions(array('ignoreNoFile' => true));
+
+                if (!$adapter->isValid()) {
+                    $dataError = $adapter->getMessages();
+                    $error = array();
+                    foreach ($dataError as $key => $row) {
+                        $error[] = $row;
+                    }
+                    $form->setMessages(array('fileupload' => $error));
+                } else {
+                    if ($File['error'] !== 4) {
+                        $adapter->setDestination(dirname(PUBLIC_PATH) . '/public/img/productos/tmp');
+                        $tmp_pre = str_replace('/tmp/', '', $File['tmp_name']);
+                        $file_name = $tmp_pre . '_' . $File['name'];
+                        if ($adapter->receive($file_name)) {
+                            $imagen = $adapter->getFileName();
+                            $thumbnailer = $this->getServiceLocator()->get('WebinoImageThumb');
+                            $thumb = $thumbnailer->create($imagen, $options = [], $plugins = []);
+
+                            $thumb->adaptiveResize(100, 72);
+                            $thumb_name = dirname(PUBLIC_PATH) . '/public/img/categorias/thumb_' . $File['name'];
+
+                            $thumb->save($thumb_name);
+                            $rutaImagen = str_replace(PUBLIC_PATH, '', $thumb_name);
+                            $categoria->setImagen($rutaImagen);
+                        }
+                    }
+
+                    $this->getCategoriaMapper()->saveCategoria($categoria);
+                    return $this->redirect()->toRoute('categoria');
+                }
             }
         }
 

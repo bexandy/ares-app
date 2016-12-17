@@ -26,7 +26,8 @@ return array(
         'EdpSuperluminal',
         'WebinoImageThumb',
         'Usuarios',
-        'Roleuserbridge'
+        'Roleuserbridge',
+        'Clientes'
 
     ),
 
@@ -47,8 +48,8 @@ return array(
         'config_glob_paths' => array(
             'config/autoload/{{,*.}global,{,*.}local}.php',
         ),
-        'config_cache_enabled'     => true,
-        'module_map_cache_enabled' => true,
+        'config_cache_enabled'     => false,
+        'module_map_cache_enabled' => false,
         'cache_dir'                => 'data/cache/',
 
         // Whether or not to enable a configuration cache.

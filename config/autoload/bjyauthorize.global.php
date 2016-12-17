@@ -53,6 +53,7 @@ return array(
         'guards' => array(
             'BjyAuthorize\Guard\Controller' => array(
                 array('controller' => 'Application\Controller\Index', 'action' => 'index', 'roles' => array('autenticado', 'guest')),
+                array('controller' => 'Clientes\Controller\Index', 'action' => 'index', 'roles' => array('autenticado', 'guest')),
                 array(
                     'controller' => array('Pedidos\Controller\Pedido','Pedidos\Controller\Item'),
                     'roles' => array('vendedor','administrador')
@@ -76,7 +77,7 @@ return array(
                     'roles' => array('administrador')
                 ),
                 array(
-                    'controller' => array('Productos\Controller\Producto','Productos\Controller\Categoria','Productos\Controller\UnidadMedida'),
+                    'controller' => array('Productos\Controller\Producto','Productos\Controller\Categoria','Productos\Controller\UnidadMedida', 'Productos\Controller\Marca'),
                     'roles' => array('administrador')
                 ),
                 array(

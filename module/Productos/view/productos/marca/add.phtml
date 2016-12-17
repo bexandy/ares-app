@@ -1,0 +1,56 @@
+<?php echo $this->headScript()->appendFile($this->basePath().'/js/modules/productos/marca.js'); ?>
+<?php
+$title = 'Añadir Marca';
+$this->headTitle($title);
+?>
+
+<div class="row">
+    <div class="col-sm-3 col-md-3"></div>
+    <div class="col-sm-6 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading text-center"><h3><?php echo $this->escapeHtml($title); ?></h3></div>
+            <div class="panel-body">
+                <?php
+                $form = $this->form;
+                $url = $this->url('marca', array('action' => 'add'));
+                $form->setAttribute('action', $url);
+                $form->get('submit')->setAttribute('value', 'Añadir Marca');
+                $formLabel = $this->plugin('formLabel');
+                $form->prepare();
+                ?>
+                <?php echo $this->form()->openTag($form); ?>
+
+                <?php echo $this->formHidden($form->get('id'));?>
+                <?php echo $this->formHidden($form->get('imagen')); ?>
+
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 ">
+                        <img id="imageupload" src="<?php echo $form->get('imagen')->getValue() ?>" style="max-height: 72px; max-width: 100px;" />
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 ">
+                        <?php echo $this->formRow($form->get('nombre')); ?>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12 ">
+                        <?php echo $this->formRow($form->get('fileupload')); ?>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="panel-footer text-right">
+                <a href="<?php echo $this->url('marca') ?>" class="btn btn-default">Volver</a>
+                <?php echo $this->formInput($form->get('submit')); ?>
+            </div>
+            <?php echo $this->form()->closeTag($form); ?>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3"></div>
+</div>

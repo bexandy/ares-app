@@ -12,6 +12,8 @@ namespace Productos\Model;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\Sql\Sql;
+use Zend\Paginator\Adapter\DbSelect;
+use Zend\Paginator\Paginator;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
 class MarcaMapper
@@ -27,15 +29,23 @@ class MarcaMapper
         $this->sql->setTable($this->tableName);
     }
 
-    public function fetchAll()
+    public function fetchAll($paginated=false)
     {
-        $select = $this->sql->select();
-        $statement = $this->sql->prepareStatementForSqlObject($select);
-        $results = $statement->execute();
-
-        $entityPrototype = new ProductoEntity();
+        $entityPrototype = new MarcaEntity();
         $hydrator = new ClassMethods();
         $resultset = new HydratingResultSet($hydrator, $entityPrototype);
+
+        $select = $this->sql->select();
+
+        if ($paginated) {
+
+            $paginatorAdapter = new DbSelect($select,$this->dbAdapter, $resultset);
+            $paginator = new Paginator($paginatorAdapter);
+            return $paginator;
+        }
+
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $results = $statement->execute();
         $resultset->initialize($results);
         return $resultset;
     }

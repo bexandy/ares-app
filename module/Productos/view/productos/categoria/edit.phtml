@@ -1,25 +1,59 @@
+<?php echo $this->headScript()->appendFile($this->basePath().'/js/modules/productos/marca.js'); ?>
 <?php
 $title = 'Editar Categoria';
 $this->headTitle($title);
 ?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
 
-<?php
-$form = $this->form;
-$url = $this->url('categoria', array('action' => 'edit', 'id' => $id));
-$form->setAttribute('action', $url);
-$form->get('submit')->setAttribute('value', 'Actualizar Categoria');
-$form->prepare();
+<div class="row">
+    <div class="col-sm-3 col-md-3"></div>
+    <div class="col-sm-6 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading text-center"><h3><?php echo $this->escapeHtml($title); ?></h3></div>
+            <div class="panel-body">
+                <?php
+                $form = $this->form;
+                $url = $this->url('categoria', array('action' => 'edit', 'id' => $id));
+                $form->setAttribute('action', $url);
+                $form->get('submit')->setAttribute('value', 'Editar Categoria');
+                $formLabel = $this->plugin('formLabel');
+                $form->prepare();
+                ?>
+                <?php echo $this->form()->openTag($form); ?>
 
-echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('nombre'));
-echo $this->formRow($form->get('imagen'));
-?>
-<div>
-    <?php echo $this->formInput($form->get('submit')); ?>
+                <?php echo $this->formHidden($form->get('id'));?>
+                <?php echo $this->formHidden($form->get('imagen')); ?>
+
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 ">
+                        <img id="imageupload" src="<?php echo $form->get('imagen')->getValue() ?>" style="max-height: 72px; max-width: 100px;" />
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 ">
+                        <?php echo $this->formRow($form->get('nombre')); ?>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12 ">
+                        <?php echo $this->formRow($form->get('fileupload')); ?>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="panel-footer text-right">
+                <a href="<?php echo $this->url('categoria') ?>" class="btn btn-default">Volver</a>
+                <?php echo $this->formInput($form->get('submit')); ?>
+            </div>
+            <?php echo $this->form()->closeTag($form); ?>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3"></div>
 </div>
-<?php
-echo $this->form()->closeTag($form);
+
 
 

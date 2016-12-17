@@ -19,6 +19,7 @@ class CategoriaForm extends Form
         parent::__construct('categoria');
 
         $this->setAttribute('method', 'post');
+        $this->setAttribute('enctype','multipart/form-data');
         $this->setInputFilter(new CategoriaFilter());
         $this->setHydrator(new ClassMethods());
 
@@ -36,11 +37,28 @@ class CategoriaForm extends Form
         ));
 
         $this->add(array(
-            'type'  =>  'text',
+            'name' => 'fileupload',
+            'attributes' => array(
+                'type'  => 'file',
+                'id' => 'fileupload',
+            ),
+            'options' => array(
+                'label' => 'Subir Imagen',
+                'ignoreNoFile' => true,
+            ),
+        ));
+
+        $this->add(array(
+            'type'  =>  'hidden',
             'name'  =>  'imagen',
             'options'   =>  array(
-                'label' =>  'Ruta de la Foto del Categoria',
+                'label' =>  'Ruta de la Foto de la Categoria',
             ),
+            'attributes' => array(
+                'id' => 'imagen',
+                'maxlength' => 100,
+                'class' => 'form-control',
+            )
         ));
 
         $this->add(array(

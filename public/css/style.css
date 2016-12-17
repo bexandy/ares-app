@@ -20,6 +20,10 @@ div.jumbotron div.panel-body {
  padding: 0px;
 }
 
+.texto-grande {
+    font-size: 20px;
+}
+
 .btn-success {
   background-color: #57a900;
   background-image: -moz-linear-gradient(top, #70d900, #57a900);
