@@ -2,6 +2,14 @@
  * Created by brodriguez on 02/11/16.
  */
 $(function () {
+    var categoryImg = {
+        'Apples': '<img src="/htimg/htprofileimage_display/user/1.png">',
+        'Oranges': '<img src="/htimg/htprofileimage_display/user/2.png">',
+        'Pears': '<img src="/htimg/htprofileimage_display/user/3.png">',
+        'Grapes': '<img src="/htimg/htprofileimage_display/user/4.png">',
+        'Bananas': '<img src="/htimg/htprofileimage_display/user/5.png">'
+    };
+
     $('#container').highcharts({
         chart: {
             type: 'column'
@@ -10,7 +18,14 @@ $(function () {
             text: 'Stacked column chart'
         },
         xAxis: {
-            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas'],
+            labels: {
+                x: 5,
+                useHTML: true,
+                formatter: function(){
+                    return '<div class="myToolTip" tittle="Hello ' + this.value + ' ">' + categoryImg[this.value] + '</div>';
+                }
+            }
         },
         yAxis: {
             min: 0,

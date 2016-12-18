@@ -106,8 +106,14 @@ return array(
     'navigation' => array(
         'default' => array(
             array(
-                'label' => 'Home',
+                'label' => 'Inicio',
                 'route' => 'home',
+            ),
+            array(
+                'label' => 'Clientes',
+                'route' => 'clientes',
+                'controller' => 'Clientes\Controller\Index',
+                'action' => 'index',
             ),
             array(
                 'label' => 'Tienda',
