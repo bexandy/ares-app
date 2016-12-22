@@ -27,7 +27,7 @@ return array(
         'WebinoImageThumb',
         'Usuarios',
         'Roleuserbridge',
-        'Clientes'
+        'Clientes',
 
     ),
 

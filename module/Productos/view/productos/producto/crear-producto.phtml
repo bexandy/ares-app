@@ -96,6 +96,34 @@ $this->headTitle($title);
                     <?php echo $this->formRow($producto->get('nombre')); ?>
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 ">
+                        <div class="form-group">
+                            <?php echo $this->formRow($producto->get('preciocosto')); ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 ">
+                        <div class="form-group">
+                            <?php echo $this->formRow($producto->get('ganancia')); ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 ">
+                        <div class="form-group">
+                            <?php echo $this->formRow($producto->get('tieneimpuesto')); ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 ">
+                        <div class="form-group">
+                            <?php echo $this->formRow($producto->get('impuesto')); ?>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <?php echo $this->formRow($producto->get('preciounidad')); ?>
                 </div>

@@ -101,4 +101,32 @@ class MarcaMapper
         $statement = $this->sql->prepareStatementForSqlObject($delete);
         return $statement->execute();
     }
+
+    public function getDisponibles($paginated=false)
+    {
+        $this->sql->setTable('vista_productos_disponibles');
+        $entityPrototype = new MarcaEntity();
+        $hydrator = new ClassMethods();
+        $resultset = new HydratingResultSet($hydrator, $entityPrototype);
+
+        $select = $this->sql->select();
+        $select->quantifier('DISTINCT');
+        $select->columns(array(
+            'id' => 'idmarca',
+            'nombre' => 'nombmarca',
+        ));
+        $select->join('marca', 'marca.id = vista_productos_disponibles.idmarca', array('imagen' => 'imagen'), 'left');
+
+        if ($paginated) {
+
+            $paginatorAdapter = new DbSelect($select,$this->dbAdapter, $resultset);
+            $paginator = new Paginator($paginatorAdapter);
+            return $paginator;
+        }
+
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $results = $statement->execute();
+        $resultset->initialize($results);
+        return $resultset;
+    }
 }

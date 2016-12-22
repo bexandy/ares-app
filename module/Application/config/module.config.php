@@ -116,6 +116,18 @@ return array(
                 'action' => 'index',
             ),
             array(
+                'label' => 'Ventas',
+                'route' => 'pedido',
+                'controller' => 'Pedidos\Controller\Pedido',
+                'action' => 'index',
+            ),
+            array(
+                'label' => 'Despacho',
+                'route' => 'despacho',
+                'controller' => 'Despacho\Controller\Index',
+                'action' => 'index',
+            ),
+            array(
                 'label' => 'Tienda',
                 'route' => 'application/default',
                 'controller' => 'index',
@@ -130,6 +142,12 @@ return array(
             array(
                 'label' => 'Reportes',
                 'route' => 'reportes',
+            ),
+            array(
+                'label' => 'Notificar Productos Agotados',
+                'route' => 'agotado',
+                'controller' => 'Almacen\Controller\Merma',
+                'action' => 'index',
             ),
 
         ),

@@ -27,6 +27,141 @@ class ProductoEntity
     protected $codpremium;
     protected $modificado;
     protected $disponible;
+    protected $ganancia;
+    protected $tieneimpuesto;
+    protected $impuesto;
+    protected $precioventa;
+    protected $montoganancia;
+    protected $montoimpuesto;
+    protected $preciocosto;
+    protected $cantidad;
+
+    /**
+     * @return mixed
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+
+    /**
+     * @param mixed $cantidad
+     */
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
+    }
+    /**
+     * @return mixed
+     */
+    public function getMontoganancia()
+    {
+        return $this->montoganancia;
+    }
+
+    /**
+     * @param mixed $montoganancia
+     */
+    public function setMontoganancia($montoganancia)
+    {
+        $this->montoganancia = $montoganancia;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMontoimpuesto()
+    {
+        return $this->montoimpuesto;
+    }
+
+    /**
+     * @param mixed $montoimpuesto
+     */
+    public function setMontoimpuesto($montoimpuesto)
+    {
+        $this->montoimpuesto = $montoimpuesto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreciocosto()
+    {
+        return $this->preciocosto;
+    }
+
+    /**
+     * @param mixed $preciocosto
+     */
+    public function setPreciocosto($preciocosto)
+    {
+        $this->preciocosto = $preciocosto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGanancia()
+    {
+        return $this->ganancia;
+    }
+
+    /**
+     * @param mixed $ganancia
+     */
+    public function setGanancia($ganancia)
+    {
+        $this->ganancia = $ganancia;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTieneimpuesto()
+    {
+        return $this->tieneimpuesto;
+    }
+
+    /**
+     * @param mixed $tieneimpuesto
+     */
+    public function setTieneimpuesto($tieneimpuesto)
+    {
+        $this->tieneimpuesto = $tieneimpuesto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImpuesto()
+    {
+        return $this->impuesto;
+    }
+
+    /**
+     * @param mixed $impuesto
+     */
+    public function setImpuesto($impuesto)
+    {
+        $this->impuesto = $impuesto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrecioventa()
+    {
+        return $this->precioventa;
+    }
+
+    /**
+     * @param mixed $precioventa
+     */
+    public function setPrecioventa($precioventa)
+    {
+        $this->precioventa = $precioventa;
+    }
 
     /**
      * @return mixed

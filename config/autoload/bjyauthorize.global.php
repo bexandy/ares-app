@@ -108,6 +108,10 @@ return array(
                     'controller' => array('Usuarios\Controller\Usuarios'),
                     'roles' => array('administrador')
                 ),
+                array(
+                    'controller' => array('Almacen\Controller\Merma'),
+                    'roles' => array('administrador', 'despachador')
+                ),
                 array('controller' => 'zfcuser', 'roles' => array()),
                 array('controller' => 'HtProfileImage\ProfileImage', 'roles' => array()),
                 array('controller' => 'zfcuseradmin', 'roles' => array()),

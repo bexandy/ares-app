@@ -123,11 +123,12 @@ class ProductoFieldset extends Fieldset implements InputFilterAwareInterface
             'name' => 'preciounidad',
             'type' => 'text',
             'options' => array(
-                'label' => 'Precio por Unidad',
+                'label' => 'Precio de Venta al Público',
             ),
             'attributes' => array(
-                'id' => 'nombre',
-                'required' => true,
+                'id' => 'preciounidad',
+                'readonly' => true,
+                'disabled' => true,
                 'maxlength' => 100,
                 'class' => 'form-control'
             )
@@ -211,6 +212,92 @@ class ProductoFieldset extends Fieldset implements InputFilterAwareInterface
                 'class' => 'form-control',
             )
         ));
+
+        $this->add(array(
+            'name' => 'ganancia',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Ganancia(%)',
+            ),
+            'attributes' => array(
+                'id' => 'ganancia',
+                'required' => true,
+                'maxlength' => 100,
+                'class' => 'form-control'
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'impuesto',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'IVA(%)',
+            ),
+            'attributes' => array(
+                'id' => 'impuesto',
+                'required' => true,
+                'maxlength' => 100,
+                'class' => 'form-control'
+            )
+        ));
+
+                $this->add(array(
+            'name' => 'preciocosto',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Precio de Costo',
+            ),
+            'attributes' => array(
+                'id' => 'preciocosto',
+                'required' => true,
+                'maxlength' => 100,
+                'class' => 'form-control'
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'montoganancia',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Monto de Ganancia',
+            ),
+            'attributes' => array(
+                'id' => 'montoganancia',
+                'required' => true,
+                'maxlength' => 100,
+                'class' => 'form-control'
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'montoimpuesto',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Monto de Impuesto',
+            ),
+            'attributes' => array(
+                'id' => 'montoimpuesto',
+                'required' => true,
+                'maxlength' => 100,
+                'class' => 'form-control'
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'tieneimpuesto',
+            'type' => 'checkbox',
+            'options' => array(
+                'label' => 'Tiene Impuesto',
+                'use_hidden_element' => true,
+                'checked_value' => true,
+                'unchecked_value' => false
+            ),
+            'attributes' => array(
+                'id' => 'tieneimpuesto',
+            )
+        ));
+
+
     }
 
     public function setInputFilter(InputFilterInterface $inputFilter)

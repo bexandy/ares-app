@@ -4,6 +4,30 @@
 $(document).ready(function() {
 
     $( "#vencimiento" ).datepicker();
+    $( "#ganancia" ).spinner();
+    $( "#impuesto" ).spinner();
+
+    if ($('#tieneimpuesto').is(':checked')){
+        $('input:hidden[name="producto[tieneimpuesto]"]').val(1);
+    } else {
+        $('input:hidden[name="producto[tieneimpuesto]"]').val(0);
+    }
+
+    $("#tieneimpuesto").on('change', function(event){
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        if ($('#tieneimpuesto').is(':checked')){
+            $( "#impuesto" ).attr('disabled',null);
+            $( "#impuesto" ).attr('readonly',null);
+            $('input:hidden[name="producto[tieneimpuesto]"]').val(1);
+        } else {
+            $( "#impuesto" ).attr('disabled','disabled');
+            $( "#impuesto" ).attr('readonly','readonly');
+            $('input:hidden[name="producto[tieneimpuesto]"]').val(0);
+            $('#impuesto').val(0);
+        }
+        calcularMontoVenta();
+    });
 
     $("#categoria").on('change', function(event){
         event.preventDefault();
@@ -50,4 +74,37 @@ $(document).ready(function() {
             console.log(this);
         }
     });
+
+    $("#preciocosto").on('change', function(event){
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        calcularMontoVenta();
+    });
+
+    $("#ganancia").on('change', function(event){
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        calcularMontoVenta();
+    });
+
+    $("#impuesto").on('change', function(event){
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        calcularMontoVenta();
+    });
+
+
+    function calcularMontoVenta() {
+        var preciocosto = $('#preciocosto').val();
+        var ganancia = $('#ganancia').val();
+        var impuesto = $('#impuesto').val();
+        var tieneimpuesto = $('#tieneimpuesto').val();
+        var monto = preciocosto*(1+ganancia/100);
+        if (tieneimpuesto = 1) {
+            var montoventa = monto*(1+impuesto/100);
+        } else {
+            var montoventa = monto;
+        }
+        $('#preciounidad').val(montoventa);
+    }
 });

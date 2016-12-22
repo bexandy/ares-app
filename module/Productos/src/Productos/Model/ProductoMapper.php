@@ -72,6 +72,12 @@ class ProductoMapper
             unset($data['nombunidmedventas']);
             unset($data['nombunidmedalmacen']);
             unset($data['disponible']);
+            unset($data['cantidad']);
+            unset($data['montoganancia']);
+            unset($data['montoimpuesto']);
+            unset($data['precioventa']);
+            unset($data['disponible']);
+            unset($data['preciounidad']);
             $action->set($data);
             $action->where(array('id' => $producto->getId()));
         } else {
@@ -83,6 +89,12 @@ class ProductoMapper
             unset($data['nombunidmedventas']);
             unset($data['nombunidmedalmacen']);
             unset($data['disponible']);
+            unset($data['cantidad']);
+            unset($data['montoganancia']);
+            unset($data['montoimpuesto']);
+            unset($data['precioventa']);
+            unset($data['disponible']);
+            unset($data['preciounidad']);
             $action->values($data);
         }
         $statement = $this->sql->prepareStatementForSqlObject($action);
@@ -278,4 +290,36 @@ class ProductoMapper
         $resultset->initialize($results);
         return $resultset;
     }
+
+    public function getProductosMarca($idmarca, $verTodos = false, $paginated=false)
+    {
+        if ($verTodos) {
+            $this->sql->setTable('vista_productos');
+        } else {
+            $this->sql->setTable('vista_productos_disponibles');
+        }
+        $entityPrototype = new ProductoEntity();
+        $hydrator = new ClassMethods();
+        $resultset = new HydratingResultSet($hydrator, $entityPrototype);
+
+        $select = $this->sql->select();
+        $select->where(array('idmarca' => $idmarca));
+
+        if ($paginated) {
+
+            $paginatorAdapter = new DbSelect($select,$this->dbAdapter, $resultset);
+            $paginator = new Paginator($paginatorAdapter);
+            return $paginator;
+        }
+
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $results = $statement->execute();
+        if (!$results) {
+            return null;
+        }
+
+        $resultset->initialize($results);
+        return $resultset;
+    }
+
 }

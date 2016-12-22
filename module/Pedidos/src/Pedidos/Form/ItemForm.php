@@ -37,6 +37,22 @@ class ItemForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'preciocosto',
+            'type' => 'hidden',
+        ));
+
+        $this->add(array(
+            'name' => 'ganancia',
+            'type' => 'hidden',
+        ));
+
+        $this->add(array(
+            'name' => 'impuesto',
+            'type' => 'hidden',
+        ));
+
+
+        $this->add(array(
             'name' => 'nombproducto',
             'type' => 'text',
             'options' => array(

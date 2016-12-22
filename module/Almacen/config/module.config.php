@@ -18,6 +18,7 @@ return array(
             'Almacen\Controller\Movimiento' => 'Almacen\Controller\MovimientoController',
             'Almacen\Controller\Ingreso' => 'Almacen\Controller\IngresoController',
             'Almacen\Controller\Traslado' => 'Almacen\Controller\TrasladoController',
+            'Almacen\Controller\Merma' => 'Almacen\Controller\MermaController',
         ),
     ),
     'router' => array(
@@ -99,6 +100,21 @@ return array(
                     'action'    =>  '(index|filtro)',
                     'categoria'    =>  '[1-9][0-9]*',
                     'marca'    =>  '[1-9][0-9]*',
+                ),
+            ),
+            'agotado' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/agotado[/:action[/:id]]',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Almacen\Controller',
+                        'controller'    => 'Merma',
+                        'action'        => 'index',
+                    ),
+                ),
+                'constraints' => array(
+                    'action'    =>  '(notificar)',
+                    'id'    =>  '[0-9]*',
                 ),
             ),
         ),

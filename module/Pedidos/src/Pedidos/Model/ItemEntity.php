@@ -17,6 +17,57 @@ class ItemEntity
     protected $unidmedprod;
     protected $cantidad;
     protected $subtotal;
+    protected $ganancia;
+    protected $impuesto;
+    protected $preciocosto;
+
+    /**
+     * @return mixed
+     */
+    public function getGanancia()
+    {
+        return $this->ganancia;
+    }
+
+    /**
+     * @param mixed $ganancia
+     */
+    public function setGanancia($ganancia)
+    {
+        $this->ganancia = $ganancia;
+    }
+
+        /**
+     * @return mixed
+     */
+    public function getImpuesto()
+    {
+        return $this->impuesto;
+    }
+
+    /**
+     * @param mixed $impuesto
+     */
+    public function setImpuesto($impuesto)
+    {
+        $this->impuesto = $impuesto;
+    }
+
+        /**
+     * @return mixed
+     */
+    public function getPreciocosto()
+    {
+        return $this->preciocosto;
+    }
+
+    /**
+     * @param mixed $preciocosto
+     */
+    public function setPreciocosto($preciocosto)
+    {
+        $this->preciocosto = $preciocosto;
+    }
 
     /**
      * @return mixed

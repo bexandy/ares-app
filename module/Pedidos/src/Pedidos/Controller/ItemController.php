@@ -55,7 +55,7 @@ class ItemController extends AbstractActionController
             return $this->redirect()->toRoute('pedido', array('action'=>'edit', 'id' => $idpedido));
         }
 
-        $producto = $this->getProductoMapper()->getProducto($idproducto);
+        $producto = $this->getProductoMapper()->getProducto($idproducto,true);
 
         $item = new ItemEntity();
         $item->setPedido($idpedido);
@@ -71,7 +71,14 @@ class ItemController extends AbstractActionController
 
                 if ($form->get('seleccion')->getValue() === 'cantidad'){
                     $form->get('cantidad')->setAttributes(array('readonly'=>true,'disabled'=>true));
-                    $subtotal = $item->getCantidad() * $producto->getPreciounidad();
+                    $cant = $item->getCantidad();
+                    $ganancia = $cant * $producto->getMontoganancia();
+                    $item->setGanancia($ganancia);
+                    $impuesto = $cant * $producto->getMontoimpuesto();
+                    $item->setImpuesto($impuesto);
+                    $costo = $cant * $producto->getPreciocosto();
+                    $item->setPreciocosto($costo);
+                    $subtotal = $costo + $ganancia + $impuesto;
                     $item->setSubtotal($subtotal);
                 }
 
@@ -79,6 +86,12 @@ class ItemController extends AbstractActionController
                     $form->get('precio')->setAttributes(array('readonly'=>true,'disabled'=>true));
                     $cantidad_temp = $form->get('precio')->getValue() / $producto->getPreciounidad();
                     $cantidad = round($cantidad_temp,3);
+                    $ganancia = $cantidad * $producto->getMontoganancia();
+                    $item->setGanancia($ganancia);
+                    $impuesto = $cantidad * $producto->getMontoimpuesto();
+                    $item->setImpuesto($impuesto);
+                    $costo = $cantidad * $producto->getPreciocosto();
+                    $item->setPreciocosto($costo);
                     $item->setSubtotal($form->get('precio')->getValue());
                     $item->setCantidad($cantidad);
                 }
@@ -107,7 +120,7 @@ class ItemController extends AbstractActionController
         $form->get('seleccion')->setValue('cantidad');
         $form->get('precio')->setAttributes(array('readonly' => true, 'disabled' => true));
 
-        
+
         return array(
             'form' => $form,
             'producto' => $producto,

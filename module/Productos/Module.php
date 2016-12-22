@@ -7,6 +7,7 @@
  */
 namespace Productos;
 
+use Almacen\Model\MermaMapper;
 use Productos\Form\CrearProductoForm;
 use Productos\Form\CreateProduct;
 use Productos\Model\CategoriaMapper;
