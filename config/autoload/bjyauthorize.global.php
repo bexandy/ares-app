@@ -38,6 +38,7 @@ return array(
             'BjyAuthorize\Provider\Resource\Config' => array(
                 'Inicio' => array(),
                 'Ventas' => array(),
+                'Despacho' => array(),
                 'Administracion' => array(),
             ),
         ),
@@ -47,6 +48,8 @@ return array(
                     array('autenticado','Inicio','acceder'),
                     array('vendedor','Ventas',array('acceder','crear')),
                     array('administrador','Administracion',array('acceder','modificar')),
+                    array('despachador','Despacho',array('acceder','crear','modificar')),
+                    array('administrador','Despacho',array('acceder')),
                 ),
             ),
         ),
