@@ -148,6 +148,9 @@ return array(
                 'route' => 'agotado',
                 'controller' => 'Almacen\Controller\Merma',
                 'action' => 'index',
+                'class' => 'btn btn-warning navbar-btn custom-btn',
+                'resource' => 'Despacho',
+                'privilege' => 'acceder'
             ),
 
         ),
