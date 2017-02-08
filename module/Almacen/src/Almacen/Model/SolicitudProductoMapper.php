@@ -42,7 +42,7 @@ class SolicitudProductoMapper
 
     public function getSolicitudesActivas()
     {
-        $select = $this->sql->select();
+        //$select = $this->sql->select();
         $select->columns(array(
             'id' => 'id',
             'idproducto' => 'idproducto',
@@ -64,7 +64,7 @@ class SolicitudProductoMapper
 
     public function saveSolicitud(SolicitudProductoEntity $solicitud)
     {
-        $this->sql->setTable('solicitud_producto');
+        $this->sql->setTable();
         $hydrator = new ClassMethods();
         $data = $hydrator->extract($solicitud);
 
@@ -92,7 +92,7 @@ class SolicitudProductoMapper
 
     public function existeSolicitud($idproducto)
     {
-        $select = $this->sql->select('solicitud_producto');
+        $select = $this->sql->select();
         $select->columns(array('id' => 'id'));
         $select->where(array('idproducto' => $idproducto));
 
