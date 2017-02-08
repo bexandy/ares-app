@@ -9,6 +9,7 @@
 
 namespace Application;
 
+use Application\Model\MensajesMapper;
 use Application\Model\MyAuthStorage;
 use BjyAuthorize\View\RedirectionStrategy;
 use Zend\Authentication\Adapter\DbTable as DbTableAuthAdapter;
@@ -56,10 +57,5 @@ class Module
                 ),
             ),
         );
-    }
-
-    public function getServiceConfig()
-    {
-        return array();
     }
 }

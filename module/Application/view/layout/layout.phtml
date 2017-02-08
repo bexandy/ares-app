@@ -49,15 +49,30 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
+
+        <section id="alertas">
+            <div class="container">
+
+                <noscript>
+                    <div class="alert alert-warning">
+                        Para el correcto funcionamiento debe tener el soporte de Javascript habilitado
+                    </div>
+                </noscript>
+
+                <?php $this->NotificationsHelper(); ?>
+                <?php $this->MensajesHelper(); ?>
+
+            </div>
+        </section>
+
         <div class="container">
             <?php echo $this->content; ?>
             <hr>
             <footer>
                 <p> Copyright &copy; 2016 por Ares, C.A. <?php echo $this->translate('All rights reserved.') ?> - Desarrollado por <a
-                        href="http://www.bexandyrodriguez.com.ve">Inversiones Bexandy Rodríguez F,C.</a></p>
+                        href="http://www.bexandyrodriguez.com.ve" target="_blank">Inversiones Bexandy Rodríguez F,C.</a></p>
             </footer>
-        </div> <!-- /container -->
-        <?php echo $this->inlineScript() ?>
+        </div> <!-- /container --><?php echo $this->inlineScript() ?>
     </body>
 </html>
 

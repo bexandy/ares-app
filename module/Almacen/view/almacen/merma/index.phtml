@@ -35,13 +35,13 @@ $this->headTitle($title);
             <?php foreach ($productos as $producto ): ?>
 
                 <div class="col-sm-6 col-md-2">
-                    <a href="<?php echo $this->url('agotado', array('action'=>'notificar', 'id' => $producto->getId()));?>" class="thumbnail">
+                    <a href="<?php echo $this->url('agotado', array('action'=>'solicitar-producto', 'id' => $producto->getId()));?>" class="thumbnail">
 
                         <img src="<?= $producto->getImagen() ?>" alt="<?= $producto->getNombre() ?>">
                         <div class="caption">
                             <h4 id="producto<?= $producto->getId() ?>"><?= $producto->getNombre() ?></h4>
                             <h3>Disponible:</h3>
-                            <h3><?= $producto->getCantidad() ?> <?= $producto->getNombunidmedventas() ?></h3>
+                            <h3><?= $this->escapeHtml(round($producto->getCantidad()*100)/100) ?> <?= $producto->getNombunidmedventas() ?></h3>
                         </div>
                     </a>
                 </div>

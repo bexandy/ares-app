@@ -48,6 +48,17 @@ return array(
                     ),
                 ),
             ),
+            'autenticado' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/autenticado',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Usuarios',
+                        'action'        => 'autenticado',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -144,7 +155,7 @@ return array(
                 'route' => 'reportes',
             ),
             array(
-                'label' => 'Notificar Productos Agotados',
+                'label' => 'Solicitar Productos',
                 'route' => 'agotado',
                 'controller' => 'Almacen\Controller\Merma',
                 'action' => 'index',

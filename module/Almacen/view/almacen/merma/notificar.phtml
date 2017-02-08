@@ -5,11 +5,12 @@ $this->headTitle($title);
 
 
 <div class="jumbotron">
-    <div class="container">
+    <div class="container text-center">
         <h2><?php echo $this->escapeHtml($title); ?></h2>
 
-        <p>Está seguro que desea notificar el producto '<?php echo $this->escapeHtml($producto->getNombre()); ?>' está Agotado?</p>
-        <p> Esto generará una merma de <?= $producto->getCantidad() ?> <?= $producto->getNombunidmedventas() ?></p>
+        <p>Está seguro que desea notificar que el producto '<?php echo $this->escapeHtml($producto->getNombre()); ?>' está agotado en tienda?</p>
+        <p>Esto generará una merma de <?= $this->escapeHtml(round($producto->getCantidad()*100)/100) ?> <?= $producto->getNombunidmedventas() ?> del producto </p>
+        <p>y realizará una solicitud del producto a almacén. </p>
         <?php
         $url = $this->url('agotado', array('action' => 'notificar', 'id'=>$id)); ?>
         <form action="<?php echo $url; ?>" method="post">

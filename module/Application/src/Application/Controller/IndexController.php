@@ -41,6 +41,7 @@ class IndexController extends AbstractActionController
         $consulta = $query . $valores;
         echo ($consulta);
         */
+       // $this->layout()->setVariable('error','Mensaje de Prueba');
         return new ViewModel();
     }
 

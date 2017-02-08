@@ -418,3 +418,35 @@ input:disabled, textarea:disabled, option:disabled, optgroup:disabled, select:di
     background-color: threedlightshadow;
     color: black;
 }
+
+/***************** boton warning ***********************/
+.btn-warning:hover, .btn-warning:focus {
+    background-color: #eb9316;
+    background-position: 0 0px;
+    color: #fff;
+}
+
+.panel-warning > .panel-heading {
+    background-image: linear-gradient(to bottom, #f0ad4e 0px, #f0ad4e 100%);
+    background-repeat: repeat-x;
+}
+.panel-warning > .panel-heading {
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+    color: #3379b5;
+}
+
+.panel-warning {
+    border-color: #f0ad4e;
+}
+
+/*
+.btn{
+    white-space:normal !important;
+    word-wrap:break-word;
+}
+*/
+
+h1, h2, h3 {
+    margin-top: 0px;
+}

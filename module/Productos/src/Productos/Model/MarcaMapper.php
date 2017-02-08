@@ -104,7 +104,7 @@ class MarcaMapper
 
     public function getDisponibles($paginated=false)
     {
-        $this->sql->setTable('vista_productos_disponibles');
+        $this->sql->setTable('vista_productos');
         $entityPrototype = new MarcaEntity();
         $hydrator = new ClassMethods();
         $resultset = new HydratingResultSet($hydrator, $entityPrototype);
@@ -115,7 +115,7 @@ class MarcaMapper
             'id' => 'idmarca',
             'nombre' => 'nombmarca',
         ));
-        $select->join('marca', 'marca.id = vista_productos_disponibles.idmarca', array('imagen' => 'imagen'), 'left');
+        $select->join('marca', 'marca.id = vista_productos.idmarca', array('imagen' => 'imagen'), 'left');
 
         if ($paginated) {
 

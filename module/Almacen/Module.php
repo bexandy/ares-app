@@ -17,6 +17,7 @@ use Almacen\Model\DisponibilidadMapper;
 use Almacen\Model\IngresoMapper;
 use Almacen\Model\MermaMapper;
 use Almacen\Model\MovimientoMapper;
+use Almacen\Model\SolicitudProductoMapper;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
@@ -88,6 +89,11 @@ class Module implements
                 'MermaMapper' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $mapper = new MermaMapper($dbAdapter);
+                    return $mapper;
+                },
+                'SolicitudProductoMapper' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $mapper = new SolicitudProductoMapper($dbAdapter);
                     return $mapper;
                 },
             ),

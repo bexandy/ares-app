@@ -113,7 +113,7 @@ return array(
                     ),
                 ),
                 'constraints' => array(
-                    'action'    =>  '(notificar)',
+                    'action'    =>  '(notificar|solicitar-producto)',
                     'id'    =>  '[0-9]*',
                 ),
             ),
