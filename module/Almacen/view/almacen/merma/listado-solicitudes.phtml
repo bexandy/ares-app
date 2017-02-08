@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-sm-8 col-md-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h2 class="text-center">Listado de Solicitudes de Productos</h2></div>
+            <div class="panel-body">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Producto</th>
+                        <th>Disponibilidad</th>
+                        <th>Procesar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($solicitudes as $solicitud){ ?>
+                        <tr style="background-color: <?php echo $this->cycle(array('#F0F0F0', '#FFFFFF'))->next() ?>">
+                            <td><?php echo $solicitud->getFecha()  ?></td>
+                            <td><?php echo $solicitud->getNombre()  ?></td>
+
+                            <td><a class="btn btn-primary" href="<?php echo $this->url('inventario', array('action' => 'disponibilidad-almacen', 'idalmacen' => '1')); ?>">Disponibilidad</a></td>
+                            <td><a class="btn btn-success" href="<?php echo $this->url('traslado-productos'); ?>">Procesar</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="panel-footer">
+                <a href="<?php echo $this->url('reportes') ?>" class="btn btn-default">Volver</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2 col-md-2"></div>
+</div>
