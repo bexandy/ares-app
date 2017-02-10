@@ -86,10 +86,21 @@ class TrasladoController extends AbstractActionController
                         $disponibilidadProducto->setIdproducto($item['idproducto']) ;
                         $disponibilidadProducto->setDisponible(true);
                         $this->getDisponibilidadMapper()->actualizarProducto($disponibilidadProducto);
+
+                        // Consultar si hay Solicitudes pendientes para este producto, en caso verdadero actualizar
+                        // el estatus de la solicitud y disparar evento procesarSolicitudEvent
+                        $existeSolicitud = $this->getSolicitudProductoMapper()->existeSolicitud($item['idproducto']);
+                        if ($existeSolicitud ){
+                            $solicitud = $this->getSolicitudProductoMapper()->getSolicitud($item['idproducto']);
+                            $solicitud->setEstatus(0);
+                            $this->getSolicitudProductoMapper()->saveSolicitud($solicitud);
+
+                            // Disparamos un evento 'procesarSolicitudEvent'
+                            $this->getEventManager()->trigger('procesarSolicitudEvent', $this ,array());
+                        }
                     }
                 }
-
-                echo ("<script type='text/javascript' >alert('Los productos fueron ingresados');</script>");
+                $this->flashMessenger()->addMessage('¡Los productos seleccionados fueron trasladados con éxito al almacen!');
 
                 return $this->redirect()->toRoute('application/default', array('controller' => 'index','action'=>'admin'));
             }
@@ -142,6 +153,12 @@ class TrasladoController extends AbstractActionController
     {
         $sm = $this->getServiceLocator();
         return $sm->get('TrasladoLoteForm');
+    }
+
+    public function getSolicitudProductoMapper()
+    {
+        $sm = $this->getServiceLocator();
+        return $sm->get('SolicitudProductoMapper');
     }
 
     public function filtroAction()

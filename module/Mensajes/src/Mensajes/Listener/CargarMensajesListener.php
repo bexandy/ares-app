@@ -29,7 +29,7 @@ class CargarMensajesListener implements ListenerAggregateInterface
 
         $sharedEvents = $events->getSharedManager();
         $this->listeners[] = $sharedEvents->attach('Almacen\Controller\MermaController', 'nuevaSolicitudEvent', array($this, 'cargarDatosSession'),100);
-        $this->listeners[] = $sharedEvents->attach('Modulo\Controller\MensajesController', 'procesarSolicitudEvent', array($this, 'cargarDatosSession'),100);
+        $this->listeners[] = $sharedEvents->attach('Almacen\Controller\TrasladoController', 'procesarSolicitudEvent', array($this, 'cargarDatosSession'),100);
         $this->listeners[] = $sharedEvents->attach('ZfcUser\Authentication\Adapter\AdapterChain', 'authenticate.success', array($this, 'cargarDatosSession'),100);
         // $events->attach(MvcEvent::EVENT_DISPATCH,array($this, 'cargarDatosSession'),100);
     }

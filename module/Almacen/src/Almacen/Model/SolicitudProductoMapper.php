@@ -64,7 +64,6 @@ class SolicitudProductoMapper
 
     public function saveSolicitud(SolicitudProductoEntity $solicitud)
     {
-        $this->sql->setTable();
         $hydrator = new ClassMethods();
         $data = $hydrator->extract($solicitud);
 
@@ -105,4 +104,23 @@ class SolicitudProductoMapper
 
         return $result;
     }
+
+    public function getSolicitud($idproducto)
+    {
+        $select = $this->sql->select();
+        $select->where(array('idproducto' => $idproducto));
+
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $result = $statement->execute()->current();
+
+        if (!$result) {
+            return null;
+        }
+        $entityPrototype = new SolicitudProductoEntity();
+        $hydrator = new ClassMethods();
+        $hydrator->hydrate($result, $entityPrototype);
+
+        return $entityPrototype;
+    }
 }
+
