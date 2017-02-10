@@ -1,21 +1,19 @@
-ZendSkeletonApplication
+Sistema de Pedidos Ares
 =======================
 
-Introduction
+Vista Previa
 ------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+Usted puede ver una vista previa del proyecto en el siguiente enlace:
+[http://ares.bexandyrodriguez.com.ve](http://ares.bexandyrodriguez.com.ve)
 
-Installation using Composer
+Instalación
 ---------------------------
 
-The easiest way to create a new ZF2 project is to use [Composer](https://getcomposer.org/). If you don't have it already installed, then please install as per the [documentation](https://getcomposer.org/doc/00-intro.md).
+La manera más fácil es clonar el proyecto desde el repositorio [GitHub](https://github.com/bexandy/ares-app/). 
 
+Clone el repositorio en su servidor local vía ssh:
 
-Create your new ZF2 project:
-
-    composer create-project -n -sdev zendframework/skeleton-application path/to/install
+    git clone https://github.com/bexandy/ares-app path/a/instalar
 
 
 

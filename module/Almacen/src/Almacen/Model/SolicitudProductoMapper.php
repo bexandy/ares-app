@@ -42,7 +42,7 @@ class SolicitudProductoMapper
 
     public function getSolicitudesActivas()
     {
-        $select = $this->sql->select();
+        //$select = $this->sql->select();
         $select->columns(array(
             'id' => 'id',
             'idproducto' => 'idproducto',
@@ -122,4 +122,5 @@ class SolicitudProductoMapper
 
         return $entityPrototype;
     }
+
 }
