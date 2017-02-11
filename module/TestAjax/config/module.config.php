@@ -3,6 +3,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'TestAjax\Controller\Skeleton' => 'TestAjax\Controller\SkeletonController',
+            'TestAjax\Controller\Customers' => 'TestAjax\Controller\CustomersController',
         ),
     ),
     'router' => array(
@@ -42,11 +43,49 @@ return array(
 
                 ),
             ),
+            'customers' => array(
+                'type'  =>  'Literal',
+                'options' => array(
+                    'route' => '/customers',
+                    'defaults' => array(
+                        'controller' => 'TestAjax\Controller\Customers',
+                        'action' => 'list'
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    // LIST
+                    'list' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:page]',
+                            'defaults' => array(
+                                'controller' => 'TestAjax\Controller\Customers',
+                                'actions' => 'list',
+                            ),
+                        ),
+                    ),
+                    // PAGINATION
+                    'pager' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/pager[/:page]',
+                            'defaults' => array(
+                                'controller' => 'TestAjax\Controller\Customers',
+                                'actions' => 'pager',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'TestAjax' => __DIR__ . '/../view',
+            __DIR__ . '/../view',
+        ),
+        'template_map' => array(
+            'customers-content' => __DIR__.'/../view/customers/customers-content.phtml',
         ),
     ),
 

@@ -28,7 +28,8 @@ return array(
         'Usuarios',
         'Roleuserbridge',
         'Clientes',
-        'Mensajes'
+        'Mensajes',
+        'Sample'
 
     ),
 

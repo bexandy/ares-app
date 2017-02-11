@@ -115,6 +115,10 @@ return array(
                     'controller' => array('Almacen\Controller\Merma'),
                     'roles' => array('administrador', 'despachador')
                 ),
+                array(
+                    'controller' => array('Sample\Controller\Index'),
+                    'roles' => array('administrador', 'despachador')
+                ),
                 array('controller' => 'zfcuser', 'roles' => array()),
                 array('controller' => 'HtProfileImage\ProfileImage', 'roles' => array()),
                 array('controller' => 'zfcuseradmin', 'roles' => array()),
