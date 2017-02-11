@@ -1,0 +1,87 @@
+<style>
+
+    .sort{
+        float:right;cursor:pointer;
+    }
+
+</style>
+<?php
+$orderBy = ($this->order == 'asc')?'desc':'asc';
+?>
+<table class="table" id="stateList">
+    <thead>
+    <tr>
+        <th>S.No.</th>
+        <th>State Name <a class="sort" href="<?php echo $this->url('sample').'/index/get-state-list/page/'.$this->page.'/column/state_name/order/'.$orderBy; ?>">Sort</a></th>
+        <th>Country Name <a class="sort" href="<?php echo $this->url('sample').'/index/get-state-list/page/'.$this->page.'/column/country_name/order/'.$orderBy; ?>">Sort</a></th>
+        <th>Status <a class="sort" href="<?php echo $this->url('sample').'/index/get-state-list/page/'.$this->page.'/column/status/order/'.$orderBy; ?>">Sort</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    $counter = ($this->page - 1) * 10;
+
+    foreach ($this->stateList as $key => $state) {
+        $class = "odd";
+        if ($key % 2 == 0) {
+            $class = "even";
+        }
+        ?>
+        <tr class="<?php echo $class; ?> gradeX">
+            <td class="center"><?php echo $counter + $key + 1; ?></td>
+            <td class="center"><?php echo $state->state_name; ?></td>
+            <td class="center"><?php echo $state->country_name; ?></td>
+            <td class="center"><?php echo ($state->status == 'Y') ? 'Active' : 'Inactive'; ?></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+<?php
+// add at the end of the file after the table
+echo $this->paginationControl(
+    $this->paginator, 'sliding', array('pagination/pagination.phtml', 'Sample'), array('route' => 'sample','order' => $this->order, 'column' => $this->column,'controllerName' => 'index', 'actionName' => 'get-state-list')
+);
+?>
+
+<script>
+
+    jQuery(document).ready(function(){
+
+        jQuery('.pagination a').unbind('click');
+        jQuery('.pagination a').click(function(event){
+
+            event.preventDefault();
+            var url = jQuery(this).attr('href');
+            if(url == '#') return false;
+
+            getStateList(url);
+
+        });
+
+        jQuery('a.sort').unbind('click');
+        jQuery('a.sort').click(function(event){
+            event.preventDefault();
+
+            var url = jQuery(this).attr('href');
+            if(url == '#') return false;
+            getStateList(url);
+        });
+
+    });
+
+    function getStateList(url){
+        jQuery.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'html',
+            data: {},
+            success: function(data, status){
+                jQuery('#getStateList').html(data);
+                jQuery('#pageNo').val('<?php echo $this->page; ?>');
+                jQuery('#orderBy').val('<?php echo $this->order; ?>');
+                jQuery('#columnName').val('<?php echo $this->column; ?>');
+            }
+        });
+    }
+
+</script>

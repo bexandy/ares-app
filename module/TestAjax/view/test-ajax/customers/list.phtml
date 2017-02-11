@@ -1,0 +1,8 @@
+<div id="customersList">
+    <!-- HTML CODE THAT GENERATE LISTS' ROWS -->
+    <?php
+    //CALL TO THE PAGINATION TEMPLATE. WE PASS THE customers PAGINATOR CREATED IN THE CONTROLLER'S pagerAction()
+    echo $this->paginationControl( $this->customers, 'Sliding', 'customers/customers-pagination.phtml' );
+    ?>
+    <!-- HTML CODE THAT CLOSES THE LIST -->
+</div>

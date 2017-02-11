@@ -1,0 +1,22 @@
+<a id="pager_first"
+   href="<?php echo $this->url( 'customers/filter', array( 'page' => $this->first ) ); ?>">
+    &lt;&lt; First
+</a>
+<a id="pager_previous"
+   href="<?php echo $this->url( 'customers/filter', array( 'page' => $this->previous-9 ) ); ?>">
+    &lt;&lt; Previous
+</a>
+<?php foreach ( $this->pagesInRange as $page ): ?>
+    <a id="<?= "pager_" . $page ?>">
+        href="<?php echo $this->url( 'customers/filter', array( 'page' => $page ) ); ?>">
+        <?php echo $page; ?>
+    </a>
+<?php endforeach; ?>
+<a id="pager_next"
+   href="<?php echo $this->url( 'customers/filter', array( 'page' => $this->next+9 ) ); ?>">
+    &lt;&lt; Next
+</a>
+<a id="pager_last"
+   href="<?php echo $this->url( 'customers/filter', array( 'page' => $this->last ) ); ?>">
+    Last &gt;&gt;
+</a>

@@ -1,0 +1,26 @@
+<h1>State List</h1>
+<div id="getStateList"></div>
+
+<input type="hidden" name="pageNo" id="pageNo" value="1" />
+<input type="hidden" name="orderBy" id="orderBy" value="asc" />
+<input type="hidden" name="columnName" id="columnName" value="state_name" />
+
+<script>
+
+    jQuery(document).ready(function(){
+
+        var url = '/sample/index/get-state-list/page/'+ jQuery("#pageNo").val() +'/column/'+ jQuery("#columnName").val() +'/order/'+ jQuery("#orderBy").val();
+        //return false;
+        jQuery.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'html',
+            data: {},
+            success: function(data, status){
+                jQuery('#getStateList').html(data);
+            }
+        });
+
+    });
+
+</script>
