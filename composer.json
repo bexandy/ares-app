@@ -18,7 +18,7 @@
         "zf-commons/zfc-admin": "dev-master",
         "danielss89/zfc-user-admin": "dev-master",
         "jfloff/highroller-zf2": "dev-master",
-        "webino/webino-image-thumb": "dev-develop",
+        "webino/webino-image-thumb": "dev-develop"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.6"
