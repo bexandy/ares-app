@@ -117,7 +117,7 @@ return array(
                 ),
                 array(
                     'controller' => array('Sample\Controller\Index'),
-                    'roles' => array('administrador', 'despachador')
+                    'roles' => array('autenticado')
                 ),
                 array('controller' => 'zfcuser', 'roles' => array()),
                 array('controller' => 'HtProfileImage\ProfileImage', 'roles' => array()),
