@@ -116,8 +116,16 @@ return array(
                     'roles' => array('administrador', 'despachador')
                 ),
                 array(
-                    'controller' => array('Sample\Controller\Index'),
-                    'roles' => array('administrador', 'despachador')
+                    'controller' => array('Kardex\Controller\Index'),
+                    'roles' => array('guest', 'autenticado')
+                ),
+                array(
+                    'controller' => array('Kardex\Controller\Inventario'),
+                    'roles' => array('guest', 'autenticado')
+                ),
+                array(
+                    'controller' => array('Kardex\Controller\Prueba'),
+                    'roles' => array('guest', 'autenticado')
                 ),
                 array('controller' => 'zfcuser', 'roles' => array()),
                 array('controller' => 'HtProfileImage\ProfileImage', 'roles' => array()),

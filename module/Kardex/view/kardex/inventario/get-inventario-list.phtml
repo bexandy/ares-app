@@ -1,0 +1,208 @@
+<style>
+
+    .sort{
+        cursor:pointer;
+    }
+
+    .label{float: right}
+
+</style>
+
+<div class="container text-center">
+
+    <div class="row">
+        <div class="col-sm-1 col-md-1"></div>
+        <div class="col-sm-10 col-md-10">
+            <div class="panel panel-primary">
+
+                <div class="panel-heading text-center">
+                    <h3>Kardex de Inventario</h3>
+                </div>
+
+                <div class="panel-body text-center">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="well well-sm">
+                                <?php $filtros->setAttribute('action', ''); ?>
+                                <?php $filtros->prepare(); ?>
+                                <?php echo $this->form()->openTag($filtros); ?>
+                                <?php
+                                echo $this->formRow($filtros->get('marca'));
+                                echo ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                                echo $this->formRow($filtros->get('categoria'));
+                                echo ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                                echo $this->formRow($filtros->get('almacen'));
+                                ?>
+                                <?php echo $this->form()->closeTag(); ?>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <table class="table table1 table-condensed" id="inventarioList">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th scope="col">Inventario</th>
+                                <th scope="col">Reservado</th>
+                                <th scope="col">Disponible</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($this->inventario as $key => $producto) {  ?>
+                                <?php $classAlmacen = ($producto->idalmacen == 1)?'label label-warning':'label label-info'; ?>
+                                <?php $unidadMedida = ($producto->idalmacen == 1)? $producto->unidmed:$producto->unidmeddetal; ?>
+                                <tr>
+                                    <th scope="row"><span class="badge"><?php echo $this->escapeHtml($producto->marca); ?></span><span class="badge"><?php echo $this->escapeHtml($producto->categoria); ?></span> <?php echo $this->escapeHtml($producto->nombproducto); ?> <span class="<?php echo $classAlmacen ?>"><?php echo $this->escapeHtml($producto->nombre); ?></span></th>
+                                    <td><?php echo $this->escapeHtml(round($producto->cantidad * 100)/100).' '.$unidadMedida; ?></td>
+                                    <td><?php echo $this->escapeHtml(round($producto->reservado * 100)/100).' '.$unidadMedida; ?></td>
+                                    <td><?php echo $this->escapeHtml(round($producto->disponible * 100)/100).' '.$unidadMedida; ?></td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                        <?php
+                        // add at the end of the file after the table
+                        echo $this->paginationControl(
+                            $this->paginator, 'sliding', array('pagination/pagination-inventario.phtml', 'Kardex'), array('route' => 'kardex', 'almacen' => $this->almacen, 'controllerName' => 'inventario', 'actionName' => 'get-inventario-list')
+                        );
+                        ?>
+                    </div>
+
+                </div>
+                <div class="panel-footer text-right">
+                    <a href="<?php echo $this->url('application/default',array('controller' => 'index', 'action' => 'admin')); ?>" class="btn btn-default">Volver</a>
+                    <a href="<?php echo $this->url('categoria', array('action'=>'add'));?>" class="btn btn-primary">Crear Nueva Marca</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1 col-md-1"></div>
+
+    </div>
+
+
+</div>
+
+<script>
+    jQuery(document).ready(function() {
+
+        jQuery('.pagination a').unbind('click');
+        jQuery('.pagination a').click(function(event){
+
+            event.preventDefault();
+            var url = jQuery(this).attr('href');
+            if(url == '#') return false;
+            var categoria = $("#categoria").val();
+            var almacen = $("#almacen").val();
+            var marca = $("#marca").val();
+            var urlmarca = '';
+            if (marca !== ''){
+                urlmarca = '/marca/'+marca;
+            }
+            var urlcategoria = '';
+            if (categoria !== ''){
+                urlcategoria = '/categoria/'+categoria;
+            }
+            var urlalmacen = '';
+            if (almacen !== ''){
+                urlalmacen = '/almacen/'+almacen;
+            }
+
+            getInventarioList(url+urlmarca+urlcategoria+urlalmacen);
+
+        });
+
+
+        jQuery("#marca").on('change', function(event){
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            var $select = $(this);
+            var marca = $select.val();
+            var categoria = $("#categoria").val();
+            var almacen = $("#almacen").val();
+            var urlbase = $("#urlbase").val();
+            var page = '/page/' + $("#pageNo").val();
+            var urlmarca = '';
+            if (marca !== ''){
+                urlmarca = '/marca/'+marca;
+            }
+            var urlcategoria = '';
+            if (categoria !== ''){
+                urlcategoria = '/categoria/'+categoria;
+            }
+            var urlalmacen = '';
+            if (almacen !== ''){
+                urlalmacen = '/almacen/'+almacen;
+            }
+
+            var url = urlbase+page+urlmarca+urlcategoria+urlalmacen;
+            getInventarioList(url);
+        });
+
+        jQuery("#categoria").on('change', function(event){
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            var $select = $(this);
+            var categoria = $select.val();
+            var marca = $("#marca").val();
+            var almacen = $("#almacen").val();
+            var urlbase = $("#urlbase").val();
+            var page = '/page/' + $("#pageNo").val();
+            var urlmarca = '';
+            if (marca !== ''){
+                urlmarca = '/marca/'+marca;
+            }
+            var urlcategoria = '';
+            if (categoria !== ''){
+                urlcategoria = '/categoria/'+categoria;
+            }
+            var urlalmacen = '';
+            if (almacen !== ''){
+                urlalmacen = '/almacen/'+almacen;
+            }
+
+            var url = urlbase+page+urlmarca+urlcategoria+urlalmacen;
+            getInventarioList(url);
+        });
+
+        jQuery("#almacen").on('change', function(event){
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            var $select = $(this);
+            var almacen = $select.val();
+            var categoria = $("#categoria").val();
+            var marca = $("#marca").val();
+            var urlbase = $("#urlbase").val();
+            var page = '/page/' + $("#pageNo").val();
+            var urlmarca = '';
+            if (marca !== ''){
+                urlmarca = '/marca/'+marca;
+            }
+            var urlcategoria = '';
+            if (categoria !== ''){
+                urlcategoria = '/categoria/'+categoria;
+            }
+            var urlalmacen = '';
+            if (almacen !== ''){
+                urlalmacen = '/almacen/'+almacen;
+            }
+
+            var url = urlbase+page+urlmarca+urlcategoria+urlalmacen;
+            getInventarioList(url);
+        });
+    });
+
+    function getInventarioList(url){
+        jQuery.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'html',
+            data: {},
+            success: function(data, status){
+                jQuery('#getInventarioList').html(data);
+                jQuery('#pageNo').val('<?php echo $this->page; ?>');
+            }
+        });
+    }
+</script>

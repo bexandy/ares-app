@@ -6,7 +6,7 @@
  * Time: 01:10 AM
  */
 
-namespace Sample\Model;
+namespace Kardex\Model;
 
 
 use Zend\Db\Adapter\Adapter;

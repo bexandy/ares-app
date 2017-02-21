@@ -12,9 +12,9 @@ $orderBy = ($this->order == 'asc')?'desc':'asc';
     <thead>
     <tr>
         <th>S.No.</th>
-        <th>State Name <a class="sort" href="<?php echo $this->url('sample').'/index/get-state-list/page/'.$this->page.'/column/state_name/order/'.$orderBy; ?>">Sort</a></th>
-        <th>Country Name <a class="sort" href="<?php echo $this->url('sample').'/index/get-state-list/page/'.$this->page.'/column/country_name/order/'.$orderBy; ?>">Sort</a></th>
-        <th>Status <a class="sort" href="<?php echo $this->url('sample').'/index/get-state-list/page/'.$this->page.'/column/status/order/'.$orderBy; ?>">Sort</a></th>
+        <th>State Name <a class="sort" href="<?php echo $this->url('kardex').'/index/get-state-list/page/'.$this->page.'/column/state_name/order/'.$orderBy; ?>">Sort</a></th>
+        <th>Country Name <a class="sort" href="<?php echo $this->url('kardex').'/index/get-state-list/page/'.$this->page.'/column/country_name/order/'.$orderBy; ?>">Sort</a></th>
+        <th>Status <a class="sort" href="<?php echo $this->url('kardex').'/index/get-state-list/page/'.$this->page.'/column/status/order/'.$orderBy; ?>">Sort</a></th>
     </tr>
     </thead>
     <tbody>
@@ -39,7 +39,7 @@ $orderBy = ($this->order == 'asc')?'desc':'asc';
 <?php
 // add at the end of the file after the table
 echo $this->paginationControl(
-    $this->paginator, 'sliding', array('pagination/pagination.phtml', 'Sample'), array('route' => 'sample','order' => $this->order, 'column' => $this->column,'controllerName' => 'index', 'actionName' => 'get-state-list')
+    $this->paginator, 'sliding', array('pagination/pagination.phtml', 'Kardex'), array('route' => 'kardex','order' => $this->order, 'column' => $this->column,'controllerName' => 'index', 'actionName' => 'get-state-list')
 );
 ?>
 

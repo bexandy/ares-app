@@ -6,13 +6,15 @@
  * Time: 01:03 AM
  */
 
-namespace Sample;
+namespace Kardex;
 
-
+use Kardex\Form\FiltrosInventarioFieldset;
+use Kardex\Mapper\InventarioMapper;
 use Zend\Db\Adapter\AdapterAwareInterface;
+use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\Mvc\MvcEvent;
 
-class Module
+class Module implements FormElementProviderInterface
 {
     public function onBootstrap(MvcEvent $e){
 
@@ -44,10 +46,25 @@ class Module
                     }
                 }
             ),
-            'invokables' => array(
-                'Sample\Model\CountryTable' => 'Sample\Model\CountryTable',
-                'Sample\Model\StateTable' => 'Sample\Model\StateTable'
-            )
+            'factories' => array(
+                'InventarioMapper' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $mapper = new InventarioMapper($dbAdapter);
+                    return $mapper;
+                },
+            ),
         );
     }
+
+    public function getFormElementConfig()
+    {
+        return array(
+            'factories' => array(
+                'Kardex\Form\FiltrosInventarioForm' => 'Kardex\Factory\FiltrosInventarioFormFactory'
+            ),
+        );
+    }
+
+
+
 }

@@ -91,10 +91,10 @@
         </div>
 
         <div class="col-xs-3 col-sm-3 col-md-3 placeholder">
-            <a href="<?php echo $this->url('inventario', array('action' => 'disponibilidad-almacen', 'idalmacen' => '1')); ?>">
+            <a href="<?php echo $this->url('kardex/inventario', array('controller' => 'inventario')); ?>">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Inventario Depósito</h3>
+                        <h3 class="panel-title">Kardex Inventario</h3>
                     </div>
                     <div class="panel-body text-center">
                         <i class="icon-clipboardalt" style="font-size: 100px; "></i>
@@ -140,6 +140,19 @@
                     </div>
                     <div class="panel-body text-center">
                         <i class="icon-refreshalt" style="font-size: 100px; "></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-md-3 placeholder">
+            <a href="<?php echo $this->url('inventario', array('action' => 'disponibilidad-almacen', 'idalmacen' => '1')); ?>">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Inventario Depósito</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <i class="icon-clipboardalt" style="font-size: 100px; "></i>
                     </div>
                 </div>
             </a>

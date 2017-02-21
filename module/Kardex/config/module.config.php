@@ -8,49 +8,64 @@
 return array(
     'router' => array(
         'routes' => array(
-            'sample' => array(
+            'kardex' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/sample',
+                    'route' => '/kardex',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Sample\Controller',
+                        '__NAMESPACE__' => 'Kardex\Controller',
                         'controller' => 'Index',
                         'action' => 'index'
                     )
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'sample' => array(
+                    'inventario' => array(
                         'type' => 'Segment',
                         'options' => array(
                             'route' => '/[:controller[/:action]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
-                            )
+                            ),
                         ),
                         'may_terminate' => true,
                         'child_routes' => array(
                             'wildcard' => array(
                                 'type' => 'Wildcard'
-                            )
-                        )
-                    )
-                )
-            )
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     'controllers' => array(
         'invokables' => array(
-            'Sample\Controller\Index' => 'Sample\Controller\IndexController'
+            'Kardex\Controller\Inventario' => Kardex\Controller\InventarioController::class
+        ),
+        'factories' => array(
+            'Kardex\Controller\Index' => Kardex\Factory\IndexControllerFactory::class,
         ),
     ),
     'view_manager' => array(
         'template_map' => array(
-            'sample/index/index' => __DIR__ . '/../view/sample/index/index.phtml',
+            'kardex/index/index' => __DIR__ . '/../view/kardex/index/index.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+    ),
+    'form_elements' => array(
+        'factories' => array(
+            'Kardex\Form\AlbumFieldset' => 'Kardex\Form\AlbumFieldsetFactory',
+        ),
+    ),
+    'service_manager' => array(
+        'invokables' => array(
+            'Kardex\Model\CountryTable' => 'Kardex\Model\CountryTable',
+            'Kardex\Model\StateTable' => 'Kardex\Model\StateTable',
+            'Kardex\Service\Inventario' => 'Kardex\Service\InventarioService'
         ),
     ),
 );

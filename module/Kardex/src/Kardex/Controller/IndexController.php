@@ -6,19 +6,33 @@
  * Time: 01:20 AM
  */
 
-namespace Sample\Controller;
+namespace Kardex\Controller;
 
 
+use Kardex\Form\CreateAlbum;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController {
+class IndexController extends AbstractActionController
+{
 
     const RECORDS_PER_PAGE = 10;
     const PAGE_RANGE = 5;
+    protected $form;
+
+    public function __construct(CreateAlbum $form)
+    {
+        $this->form = $form;
+        $this->form->init();
+    }
 
     public function indexAction() {
-        return new ViewModel();
+
+        return new ViewModel(array(
+            'form' => $this->form
+        ));
     }
 
     public function getStateListAction(){
@@ -37,7 +51,7 @@ class IndexController extends AbstractActionController {
             $order = empty($order) ? 'asc' : $order;
             $column = empty($column) ? 'state_name' : $column;
 
-            $stateTable = $this->getServiceLocator()->get('Sample\Model\StateTable');
+            $stateTable = $this->getServiceLocator()->get('Kardex\Model\StateTable');
             $paginator = $stateTable->getStates(
                 array(), array('state_id', 'state_name', 'status'), true, array("$column $order")
             );

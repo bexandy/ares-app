@@ -19,8 +19,8 @@ return array(
         'Pedidos',
         'Almacen',
         'Despacho',
-        //'ZendDeveloperTools',
-        //'SanSessionToolbar',
+        'ZendDeveloperTools',
+        'SanSessionToolbar',
         'TestAjax',
         'Reportes',
         'EdpSuperluminal',
@@ -29,7 +29,7 @@ return array(
         'Roleuserbridge',
         'Clientes',
         'Mensajes',
-        'Sample'
+        'Kardex'
 
     ),
 

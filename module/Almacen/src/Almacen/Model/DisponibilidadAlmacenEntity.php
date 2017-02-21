@@ -27,6 +27,40 @@ class DisponibilidadAlmacenEntity
     protected $disponible;
     protected $idunidmedventas;
     protected $unidmeddetal;
+    protected $marca;
+    protected $categoria;
+
+    /**
+     * @return mixed
+     */
+    public function getMarca()
+    {
+        return $this->marca;
+    }
+
+    /**
+     * @param mixed $marca
+     */
+    public function setMarca($marca)
+    {
+        $this->marca = $marca;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * @param mixed $categoria
+     */
+    public function setCategoria($categoria)
+    {
+        $this->categoria = $categoria;
+    }
 
     /**
      * @return mixed

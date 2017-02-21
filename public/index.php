@@ -3,7 +3,7 @@
   * Display all errors when APPLICATION_ENV is development.
   */
  if ($_SERVER['APPLICATION_ENV'] == 'development') {
-     error_reporting(E_ALL);
+     error_reporting(E_ALL | E_STRICT);
      ini_set("display_errors", 1);
  }
 /**
