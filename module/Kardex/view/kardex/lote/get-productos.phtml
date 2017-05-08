@@ -1,0 +1,97 @@
+<script type="text/javascript">
+    var is_xmlhttprequest   = <?php echo $this->is_xmlhttprequest; ?>;
+</script>
+
+
+<div >
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="well well-sm">
+                <?php $filtros->setAttribute('action', ''); ?>
+                <?php $filtros->prepare(); ?>
+                <?php echo $this->form()->openTag($filtros); ?>
+                <?php
+                echo $this->formRow($filtros->get('marca'));
+                echo ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                echo $this->formRow($filtros->get('categoria'));
+                echo ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                ?>
+                <?php echo $this->form()->closeTag(); ?>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="productos">
+
+        <div class="list-group">
+            <?php foreach ($productos as $producto): ?>
+                <a href="<?php echo $this->url('kardex/inventario/wildcard',array('controller' => 'lote', 'action' => 'request-producto', 'idproducto' => $producto['id'])) ?>" class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4"><?php echo $producto['nombmarca'] ?></div>
+                        <div class="col-sm-4 col-md-4"><?php echo $producto['nombcategoria'] ?></div>
+                        <div class="col-sm-4 col-md-4"><?php echo $producto['nombre'] ?></div>
+                    </div>
+                </a>
+            <?php endforeach ?>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    jQuery(document).ready(function() {
+
+        jQuery("#marca").on('change', function(event){
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            var $select = $(this);
+            var marca = $select.val();
+            var categoria = $("#categoria").val();
+            var urlbase = $("#urlbase").val();
+            var urlmarca = '';
+            if (marca !== ''){
+                urlmarca = '/marca/'+marca;
+            }
+            var urlcategoria = '';
+            if (categoria !== ''){
+                urlcategoria = '/categoria/'+categoria;
+            }
+            var url = urlbase+urlmarca+urlcategoria;
+            getProductos(url);
+        });
+
+        jQuery("#categoria").on('change', function(event){
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            var $select = $(this);
+            var categoria = $select.val();
+            var marca = $("#marca").val();
+            var urlbase = $("#urlbase").val();
+            var urlmarca = '';
+            if (marca !== ''){
+                urlmarca = '/marca/'+marca;
+            }
+            var urlcategoria = '';
+            if (categoria !== ''){
+                urlcategoria = '/categoria/'+categoria;
+            }
+
+            var url = urlbase+urlmarca+urlcategoria;
+            getProductos(url);
+        });
+    });
+
+    function getProductos(url){
+        jQuery.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'html',
+            data: {},
+            success: function(data, status){
+                jQuery('#getProductos').html(data);
+            }
+        });
+    }
+</script>
+

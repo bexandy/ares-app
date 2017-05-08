@@ -1,0 +1,78 @@
+<?php
+$title = 'Nuevo Documento de Ingreso';
+$this->headTitle($title);
+?>
+
+
+<div class="row">
+    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-sm-6 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading text-center"><h3><?php echo $this->escapeHtml($title); ?></h3></div>
+            <div class="panel-body">
+                <?php
+                $form = $this->form;
+                $ingreso = $form->get('ingreso');
+                $movimiento = $form->get('movimiento');
+                $detalles = $form->get('detalles');
+                $form->setAttribute('action', $this->url('kardex/inventario/wildcard', array('controller' => 'ingreso','action' => 'movimiento')));
+                $form->get('submit')->setAttribute('value', 'Crear');
+                $formLabel = $this->plugin('formLabel');
+                $form->prepare();
+                ?>
+                <?php echo $this->form()->openTag($form); ?>
+                <div>
+                    <?php echo $this->formHidden($ingreso->get('id'));?>
+                    <?php echo $this->formHidden($ingreso->get('tipodoc')); ?>
+                    <?php echo $this->formHidden($movimiento->get('id'));?>
+                    <?php echo $this->formHidden($movimiento->get('tipo'));?>
+                    <?php echo $this->formHidden($movimiento->get('documento'));?>
+                    <?php echo $this->formHidden($movimiento->get('usuario'));?>
+                    <?php echo $this->formHidden($movimiento->get('fecha'));?>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <?php echo $this->formRow($ingreso->get('codigo')); ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <?php echo $this->formRow($movimiento->get('almacen')); ?>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="detalles" class="row">
+                    <?php echo $this->formCollection($detalles) ?>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <?php echo $this->formRow($ingreso->get('descripcion')); ?>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="panel-footer text-right">
+                <a href="<?php echo $this->url('kardex/inventario',array('controller' => 'ingreso', 'action' => 'index')) ?>" class="btn btn-default">Volver</a>
+                <?php echo $this->formInput($form->get('submit')); ?>
+            </div>
+            <?php echo $this->form()->closeTag($form); ?>
+        </div>
+    </div>
+    <div class="col-sm-2 col-md-2"></div>
+</div>
+
+<!-- empty div to save dialog temporary -->
+<div id="winpopup"></div>

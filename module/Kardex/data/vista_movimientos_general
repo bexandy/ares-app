@@ -1,0 +1,31 @@
+SELECT
+    movimientos.id,
+    almacen.nombre,
+    tipo_movimiento.direccion,
+    movimientos.fecha,
+    tipo_documento.documento AS tipdoc,
+    (CASE documentos.tipo
+     WHEN 1 THEN facturas.numfactura
+     WHEN 5 THEN traslados.codigo
+     WHEN 7 THEN ingreso.codigo
+     END) AS documento,
+    lotes.num_lote,
+    productos.nombre AS producto,
+    detalles_movimiento.cantidad,
+    unidad_medida.abreviatura AS unidmed,
+    detalles_lote.costo,
+    detalles_lote.vencimiento
+FROM
+	movimientos
+LEFT JOIN tipo_movimiento ON movimientos.tipo = tipo_movimiento.id
+LEFT JOIN almacen ON movimientos.almacen = almacen.id
+LEFT JOIN documentos ON movimientos.documento = documentos.id
+LEFT JOIN tipo_documento ON documentos.tipo = tipo_documento.id
+LEFT JOIN ingreso ON documentos.id = ingreso.id
+LEFT JOIN facturas ON documentos.id = facturas.id
+LEFT JOIN traslados ON documentos.id = traslados.id
+LEFT JOIN detalles_movimiento ON detalles_movimiento.movimiento = movimientos.id
+LEFT JOIN detalles_lote ON detalles_movimiento.detallelote = detalles_lote.id
+LEFT JOIN lotes ON detalles_lote.lote = lotes.id
+LEFT JOIN productos ON detalles_lote.producto = productos.id
+LEFT JOIN unidad_medida ON detalles_movimiento.unidadmedida = unidad_medida.id

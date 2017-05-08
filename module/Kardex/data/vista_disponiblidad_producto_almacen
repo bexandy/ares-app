@@ -1,0 +1,15 @@
+SELECT
+ almacen.nombre AS almacen,
+ productos.nombre AS producto,
+ SUM(IF(movimientos.tipo = 1, detalles_movimiento.cantidad,0)) AS entrada,
+ SUM(IF(movimientos.tipo = 2, detalles_movimiento.cantidad,0)) AS salida,
+ (SUM(IF(movimientos.tipo = 1, detalles_movimiento.cantidad,0)) - SUM(IF(movimientos.tipo = 2, detalles_movimiento.cantidad,0))) AS disponible,
+ unidad_medida.abreviatura AS unidad
+FROM
+	detalles_movimiento
+LEFT JOIN movimientos ON movimientos.id = detalles_movimiento.movimiento
+LEFT JOIN detalles_lote ON detalles_movimiento.detallelote = detalles_lote.id
+LEFT JOIN productos ON detalles_lote.producto = productos.id
+LEFT JOIN almacen ON movimientos.almacen = almacen.id
+LEFT JOIN unidad_medida ON detalles_movimiento.unidadmedida = unidad_medida.id
+GROUP BY almacen, producto

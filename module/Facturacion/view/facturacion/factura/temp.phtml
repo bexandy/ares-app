@@ -1,0 +1,120 @@
+<body>
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="/img/ares-logo.png" alt="Zend Framework 2"/>&nbsp;Sistema de Pedidos Ares</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav&#x20;navbar-nav">
+                <li>
+                    <a href="&#x2F;">Inicio</a>
+                </li>
+                <li>
+                    <a href="&#x2F;clientes">Clientes</a>
+                </li>
+                <li>
+                    <a href="&#x2F;pedido">Ventas</a>
+                </li>
+                <li>
+                    <a href="&#x2F;despacho">Despacho</a>
+                </li>
+                <li>
+                    <a href="&#x2F;application&#x2F;index&#x2F;tienda">Tienda</a>
+                </li>
+                <li>
+                    <a href="&#x2F;application&#x2F;index&#x2F;admin">Administración</a>
+                </li>
+                <li>
+                    <a href="&#x2F;reportes">Reportes</a>
+                </li>
+            </ul>                </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<section id="alertas">
+    <div class="container">
+
+        <noscript>
+            <div class="alert alert-warning">
+                Para el correcto funcionamiento debe tener el soporte de Javascript habilitado
+            </div>
+        </noscript>
+
+
+    </div>
+</section>
+
+<div class="container">
+    <h1>FacturaController::indexAction()</h1>
+    <hr>
+
+    <form method="post" name="factura-form" action="&#x2F;" id="factura-form">
+        <div class="container">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <label for="numfactura">N° de la Factura</label>
+                        <input type="text" name="datos&#x5B;numfactura&#x5D;" id="numfactura" required="required" maxlength="100" value="">
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <input type="date" name="datos&#x5B;fecha&#x5D;" id="fecha" value="">
+                        <label for="fecha">Fecha de la Factura</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <label for="proveedor">Nombre del Proveedor</label>
+                        <input type="text" name="datos&#x5B;proveedor&#x5D;" id="proveedor" maxlength="100" value="">
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <label for="lote">Código de Lote</label>
+                        <input type="text" name="datos&#x5B;lote&#x5D;" id="lote" maxlength="100" value="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <hr>
+
+        <div class="container">
+
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <fieldset>
+                            <legend>Detalles de la Factura</legend>
+                            <fieldset>
+                                <label for="producto">Producto</label>
+                                <input type="text" name="detalles&#x5B;0&#x5D;&#x5B;producto&#x5D;" id="producto" required="required" maxlength="100" value="">
+                                <label for="precio">Precio</label>
+                                <input type="text" name="detalles&#x5B;0&#x5D;&#x5B;precio&#x5D;" id="precio" required="required" maxlength="100" value="">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="text" name="detalles&#x5B;0&#x5D;&#x5B;cantidad&#x5D;" id="cantidad" required="required" maxlength="100" value="">
+                                <label for="unimed">Unidad Medida</label>
+                                <input type="text" name="detalles&#x5B;0&#x5D;&#x5B;unimed&#x5D;" id="unimed" required="required" maxlength="100" value="">
+                                <label for="fechavenc">Fecha Vencimiento</label>
+                                <input type="text" name="detalles&#x5B;0&#x5D;&#x5B;fechavenc&#x5D;" id="fechavenc" required="required" maxlength="100" value="">
+                            </fieldset>
+                            <span data-template="&lt;fieldset&gt;&lt;label&#x20;for&#x3D;&quot;producto&quot;&gt;Producto&lt;&#x2F;label&gt;&lt;input&#x20;type&#x3D;&quot;text&quot;&#x20;name&#x3D;&quot;detalles&amp;&#x23;x5B&#x3B;__index__&amp;&#x23;x5D&#x3B;&amp;&#x23;x5B&#x3B;producto&amp;&#x23;x5D&#x3B;&quot;&#x20;id&#x3D;&quot;producto&quot;&#x20;required&#x3D;&quot;required&quot;&#x20;maxlength&#x3D;&quot;100&quot;&#x20;value&#x3D;&quot;&quot;&gt;&lt;label&#x20;for&#x3D;&quot;precio&quot;&gt;Precio&lt;&#x2F;label&gt;&lt;input&#x20;type&#x3D;&quot;text&quot;&#x20;name&#x3D;&quot;detalles&amp;&#x23;x5B&#x3B;__index__&amp;&#x23;x5D&#x3B;&amp;&#x23;x5B&#x3B;precio&amp;&#x23;x5D&#x3B;&quot;&#x20;id&#x3D;&quot;precio&quot;&#x20;required&#x3D;&quot;required&quot;&#x20;maxlength&#x3D;&quot;100&quot;&#x20;value&#x3D;&quot;&quot;&gt;&lt;label&#x20;for&#x3D;&quot;cantidad&quot;&gt;Cantidad&lt;&#x2F;label&gt;&lt;input&#x20;type&#x3D;&quot;text&quot;&#x20;name&#x3D;&quot;detalles&amp;&#x23;x5B&#x3B;__index__&amp;&#x23;x5D&#x3B;&amp;&#x23;x5B&#x3B;cantidad&amp;&#x23;x5D&#x3B;&quot;&#x20;id&#x3D;&quot;cantidad&quot;&#x20;required&#x3D;&quot;required&quot;&#x20;maxlength&#x3D;&quot;100&quot;&#x20;value&#x3D;&quot;&quot;&gt;&lt;label&#x20;for&#x3D;&quot;unimed&quot;&gt;Unidad&#x20;Medida&lt;&#x2F;label&gt;&lt;input&#x20;type&#x3D;&quot;text&quot;&#x20;name&#x3D;&quot;detalles&amp;&#x23;x5B&#x3B;__index__&amp;&#x23;x5D&#x3B;&amp;&#x23;x5B&#x3B;unimed&amp;&#x23;x5D&#x3B;&quot;&#x20;id&#x3D;&quot;unimed&quot;&#x20;required&#x3D;&quot;required&quot;&#x20;maxlength&#x3D;&quot;100&quot;&#x20;value&#x3D;&quot;&quot;&gt;&lt;label&#x20;for&#x3D;&quot;fechavenc&quot;&gt;Fecha&#x20;Vencimiento&lt;&#x2F;label&gt;&lt;input&#x20;type&#x3D;&quot;text&quot;&#x20;name&#x3D;&quot;detalles&amp;&#x23;x5B&#x3B;__index__&amp;&#x23;x5D&#x3B;&amp;&#x23;x5B&#x3B;fechavenc&amp;&#x23;x5D&#x3B;&quot;&#x20;id&#x3D;&quot;fechavenc&quot;&#x20;required&#x3D;&quot;required&quot;&#x20;maxlength&#x3D;&quot;100&quot;&#x20;value&#x3D;&quot;&quot;&gt;&lt;&#x2F;fieldset&gt;"></span>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <input name="submit" type="submit" class="btn&#x20;btn-primary" value="Ingresar&#x20;Factura"></div>
+
+    </form>            <hr>
+    <footer>
+        <p> Copyright &copy; 2016 por Ares, C.A. All rights reserved. - Desarrollado por <a
+                href="http://www.bexandyrodriguez.com.ve" target="_blank">Inversiones Bexandy Rodríguez F,C.</a></p>
+    </footer>
+</div>

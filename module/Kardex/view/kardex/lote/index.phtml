@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-sm-8 col-md-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h2 class="text-center">Lotes</h2></div>
+            <div class="panel-body">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Número de Lote</th>
+                        <th>Ubicacion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($lotes as $lote): ?>
+                        <tr>
+                            <td><a href="<?php echo $this->url('kardex/inventario/wildcard',array('controller' => 'lote', 'action' => 'detalles', 'idlote' => $lote->getId())) ?>"><?php echo $lote->getNumLote(); ?></a></td>
+                            <td><?php echo $lote->getUbicacion(); ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="panel-footer">
+                <div class="btn-toolbar">
+                    <div class="btn-group pull-left">
+                        <a href="<?php echo $this->url('application/default',array('controller' => 'index', 'action' => 'admin')); ?>" class="btn btn-default">Volver</a>
+                    </div>
+                    <div class="btn-group">
+                        <a href="<?php echo $this->url('kardex/inventario/wildcard',array('controller' => 'lote', 'action' => 'create', 'tipo' => 1)); ?>" class="btn btn-success">Crear Lote General</a>
+                        <a href="<?php echo $this->url('kardex/inventario/wildcard',array('controller' => 'lote', 'action' => 'create', 'tipo' => 2)); ?>" class="btn btn-success">Crear Lote Detal</a>
+                    </div>
+                    <div class="btn-group pull-right">
+                        <a href="<?php echo $this->url('kardex/inventario/wildcard',array('controller' => 'lote', 'action' => 'new-detalle')); ?>" class="btn btn-primary bottom-right right text-right">Agregar Detalle lote</a>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+    <div class="col-sm-2 col-md-2"></div>
+</div>

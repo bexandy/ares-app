@@ -134,13 +134,69 @@
         </div>
 
         <div class="col-xs-3 col-sm-3 col-md-3 placeholder">
+            <a href="<?php echo $this->url('kardex/inventario', array('controller' => 'lote', 'action' => 'index')); ?>">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Lotes</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <i class="icon-trolleyfull" style="font-size: 100px; "></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-md-3 placeholder">
+            <a href="<?php echo $this->url('kardex/inventario', array('controller' => 'ingreso', 'action' => 'index')); ?>">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Kardex Ingresos</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <i class="icon-trolleyload" style="font-size: 100px; "></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-md-3 placeholder">
+            <a href="<?php echo $this->url('traslado-productos'); ?>">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Kardex Retiros</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <i class="icon-trolleyunload" style="font-size: 100px; "></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="row placeholders">
+
+        <div class="col-xs-3 col-sm-3 col-md-3 placeholder">
+            <a href="<?php echo $this->url('almacen');?>">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Facturas</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <i class="icon-invoice" style="font-size: 100px; "></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-md-3 placeholder">
             <a href="<?php echo $this->url('almacen',array('action' => 'add')); ?>">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Crear Almacen</h3>
+                        <h3 class="panel-title">Kardex Traslados</h3>
                     </div>
                     <div class="panel-body text-center">
-                        <i class="icon-createfile" style="font-size: 100px; "></i>
+                        <i class="icon-mediarepeat" style="font-size: 100px; "></i>
                     </div>
                 </div>
             </a>

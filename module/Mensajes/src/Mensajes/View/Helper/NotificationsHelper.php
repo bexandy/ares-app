@@ -18,8 +18,8 @@ class NotificationsHelper extends AbstractHelper
         echo $this->view->flashMessenger()->render('error',array('alert','alert-danger'));
         echo $this->view->flashMessenger()->render('success',array('success','alert-success'));
         echo $this->view->flashMessenger()->render('default',array('alert','alert-info'));
-        // $this->view->flashMessenger()->clearCurrentMessagesFromNamespace('default');
-        // $this->view->flashMessenger()->clearCurrentMessagesFromNamespace('success');
-        // $this->view->flashMessenger()->clearCurrentMessagesFromNamespace('error');
+        $this->view->flashMessenger()->clearCurrentMessagesFromNamespace('default');
+        $this->view->flashMessenger()->clearCurrentMessagesFromNamespace('success');
+        $this->view->flashMessenger()->clearCurrentMessagesFromNamespace('error');
     }
 }

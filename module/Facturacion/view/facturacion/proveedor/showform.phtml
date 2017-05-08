@@ -1,0 +1,35 @@
+<script type="text/javascript">
+    var is_xmlhttprequest   = <?php echo $this->is_xmlhttprequest; ?>;
+    var urlform             = '<?php echo $this->url('facturacion/default', array('controller' => 'proveedor', 'action' => 'validatepostajax')); ?>';
+</script>
+
+<?php echo $this->headScript()->appendFile($this->basePath().'/js/modules/facturacion/proveedor-ajaxform-up.js'); ?>
+
+<?php
+$title = 'Datos del Proveedor';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'facturacion/default',
+    array(
+        'action' => 'showform',
+        'controller' => 'proveedor',
+    )
+));
+$form->prepare();
+?>
+
+<?php echo $this->form()->openTag($form); ?>
+<div class="element element_name">
+    <?php echo $this->formRow($form->get('nombre')); ?>
+</div>
+<hr>
+<div class="element element_submit text-right">
+    <?php echo $this->formRow($form->get('submit')); ?>
+</div>
+<?php echo $this->form()->closeTag(); ?>

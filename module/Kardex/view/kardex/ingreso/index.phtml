@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-sm-8 col-md-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h2 class="text-center">Ingresos</h2></div>
+            <div class="panel-body">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Código de Ingreso</th>
+                        <th>Descripción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($ingresos as $ingreso): ?>
+                        <tr>
+                            <td><a href="<?php echo $this->url('kardex/inventario/wildcard',array('controller' => 'lote', 'action' => 'detalles', 'idlote' => $ingreso->getId())) ?>"><?php echo $ingreso->getCodigo(); ?></a></td>
+                            <td><?php echo $ingreso->getDescripcion(); ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="panel-footer">
+                <div class="btn-toolbar">
+                    <div class="btn-group pull-left">
+                        <a href="<?php echo $this->url('reportes') ?>" class="btn btn-default">Volver</a>
+                    </div>
+                    <div class="btn-group">
+                        <a href="<?php echo $this->url('kardex/inventario/wildcard',array('controller' => 'ingreso', 'action' => 'nuevo')); ?>" class="btn btn-success">Crear Ingreso</a>
+                    </div>
+                    <div class="btn-group pull-right">
+                        <a href="<?php echo $this->url('kardex/inventario/wildcard',array('controller' => 'ingreso', 'action' => 'movimiento')); ?>" class="btn btn-primary bottom-right right text-right">Procesar Movimiento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2 col-md-2"></div>
+</div>

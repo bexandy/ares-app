@@ -1,0 +1,29 @@
+<div id="getProductos"></div>
+
+<input type="hidden" name="urlbase" id="urlbase" value="<?php echo $this->url('kardex/inventario/wildcard', array('controller' => 'Lote', 'action' => 'get-productos')) ?>" />
+
+
+
+<script>
+
+    jQuery(document).ready(function(){
+
+        var url = '/kardex/lote/get-productos';
+        //return false;
+        jQuery.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'html',
+            data: {},
+            success: function(data, status){
+                jQuery('#getProductos').html(data);
+            }
+        });
+
+    });
+
+</script>
+
+
+
+

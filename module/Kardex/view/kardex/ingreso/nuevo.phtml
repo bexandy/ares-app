@@ -1,0 +1,43 @@
+<?php
+$title = 'Nuevo Documento de Ingreso';
+$this->headTitle($title);
+?>
+
+
+<div class="row">
+    <div class="col-sm-4 col-md-4"></div>
+    <div class="col-sm-4 col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading text-center"><h3><?php echo $this->escapeHtml($title); ?></h3></div>
+            <div class="panel-body">
+                <?php
+                $form = $this->form;
+                $ingreso = $form->get('ingreso');
+                $form->setAttribute('action', $this->url('kardex/inventario/wildcard', array('controller' => 'ingreso','action' => 'nuevo')));
+                $form->get('submit')->setAttribute('value', 'Crear');
+                $formLabel = $this->plugin('formLabel');
+                $form->prepare();
+                ?>
+                <?php echo $this->form()->openTag($form); ?>
+
+                <?php echo $this->formHidden($ingreso->get('id'));?>
+                <?php echo $this->formHidden($ingreso->get('tipodoc')); ?>
+                <div class="form-group">
+                    <?php echo $this->formRow($ingreso->get('codigo')); ?>
+                </div>
+                <div class="form-group">
+                    <?php echo $this->formRow($ingreso->get('descripcion')); ?>
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <a href="<?php echo $this->url('kardex/inventario',array('controller' => 'ingreso', 'action' => 'index')) ?>" class="btn btn-default">Volver</a>
+                <?php echo $this->formInput($form->get('submit')); ?>
+            </div>
+            <?php echo $this->form()->closeTag($form); ?>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-4"></div>
+</div>
+
+<!-- empty div to save dialog temporary -->
+<div id="winpopup"></div>

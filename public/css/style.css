@@ -527,3 +527,7 @@ table.table1{
 }
 
 /***************** END TABLA PERSONALIZADA ***********************/
+
+.navbar-brand {
+    padding: 5px;
+}

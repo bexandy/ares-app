@@ -1,0 +1,49 @@
+<!-- Js -->
+<?php  $this->headScript()
+    ->appendFile($this->basePath() . '/js/modules/facturacion/factura-index.js'); ?>
+
+<h1>FacturaController::indexAction()</h1>
+<hr>
+<?php $form->setAttribute('action', $this->url('home')) ?>
+<?php $form->prepare(); ?>
+
+<?php echo $this->form()->openTag($form); ?>
+<?php $datos = $form->get('datos'); ?>
+
+<div class="container">
+    <div class="well well-sm">
+    <div class="row">
+        <div class="col-sm-6 col-md-6"><?php echo $this->formRow($datos->get('numfactura')); ?></div>
+        <div class="col-sm-6 col-md-6"><?php echo $this->formRow($datos->get('fecha'), 'append'); ?></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6"><?php echo $this->formRow($datos->get('proveedor')); ?></div>
+        <div class="col-sm-6 col-md-6"><?php echo $this->formRow($datos->get('lote')); ?></div>
+    </div>
+    </div>
+</div>
+
+<br>
+<br>
+<hr>
+<button id="boton-detalles">Añadir Detalle</button>
+<div class="container">
+
+    <br>
+    <div class="well well-sm">
+        <div class="row">
+            <div class="col-md-12 col-sm-12"><?php echo $this->formCollection($form->get('detalles')); ?></div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <?php echo $this->formElement($form->get('submit')); ?>
+</div>
+
+
+<div id="primero" data-prueba="datos de prueba"></div>
+<div id="segundo" data-nombre="Bexandy"></div>
+<?php echo $this->form()->closeTag(); ?>
+
+

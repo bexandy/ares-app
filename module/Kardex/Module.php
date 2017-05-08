@@ -9,7 +9,12 @@
 namespace Kardex;
 
 use Kardex\Form\FiltrosInventarioFieldset;
+use Kardex\Mapper\DetallesLoteMapper;
+use Kardex\Mapper\DocumentoMapper;
+use Kardex\Mapper\FiltrosProductoMapper;
+use Kardex\Mapper\IngresoMapper;
 use Kardex\Mapper\InventarioMapper;
+use Kardex\Mapper\LoteMapper;
 use Zend\Db\Adapter\AdapterAwareInterface;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\Mvc\MvcEvent;
@@ -52,6 +57,31 @@ class Module implements FormElementProviderInterface
                     $mapper = new InventarioMapper($dbAdapter);
                     return $mapper;
                 },
+                'LoteMapper' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $mapper = new LoteMapper($dbAdapter);
+                    return $mapper;
+                },
+                'DetallesLoteMapper' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $mapper = new DetallesLoteMapper($dbAdapter);
+                    return $mapper;
+                },
+                'FiltrosProductoMapper' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $mapper = new FiltrosProductoMapper($dbAdapter);
+                    return $mapper;
+                },
+                'DocumentoMapper' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $mapper = new DocumentoMapper($dbAdapter);
+                    return $mapper;
+                },
+                'IngresoMapper' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $mapper = new IngresoMapper($dbAdapter);
+                    return $mapper;
+                },
             ),
         );
     }
@@ -60,7 +90,8 @@ class Module implements FormElementProviderInterface
     {
         return array(
             'factories' => array(
-                'Kardex\Form\FiltrosInventarioForm' => 'Kardex\Factory\FiltrosInventarioFormFactory'
+                'Kardex\Form\FiltrosInventarioForm' => 'Kardex\Factory\FiltrosInventarioFormFactory',
+                'Kardex\Form\MovimientoFieldset' => 'Kardex\Factory\MovimientoFieldsetFactory'
             ),
         );
     }

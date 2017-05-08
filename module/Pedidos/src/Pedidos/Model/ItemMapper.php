@@ -77,7 +77,10 @@ class ItemMapper
             unset($data['producto']);
             unset($data['nombproducto']);
             unset($data['unidmedprod']);
+            unset($data['ganancia']);
             unset($data['seleccion']);
+            unset($data['impuesto']);
+            unset($data['preciocosto']);
              $action->set($data);
             $action->where(array('pedido' => $item->getPedido(),'producto' => $item->getProducto()));
         } else {
@@ -86,6 +89,9 @@ class ItemMapper
             unset($data['nombproducto']);
             unset($data['unidmedprod']);
             unset($data['seleccion']);
+            unset($data['ganancia']);
+            unset($data['impuesto']);
+            unset($data['preciocosto']);
             $action->values($data);
         }
         $statement = $this->sql->prepareStatementForSqlObject($action);

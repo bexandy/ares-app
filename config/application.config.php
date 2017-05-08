@@ -29,7 +29,8 @@ return array(
         'Roleuserbridge',
         'Clientes',
         'Mensajes',
-        'Kardex'
+        'Kardex',
+        'Facturacion'
 
     ),
 

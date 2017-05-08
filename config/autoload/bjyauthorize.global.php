@@ -88,7 +88,7 @@ return array(
                     'roles' => array('guest', 'autenticado')
                 ),
                 array(
-                    'controller' => array('TestAjax\Controller\Skeleton'),
+                    'controller' => array('TestAjax\Controller\Skeleton', 'TestAjax\Controller\Customers'),
                     'roles' => array('guest', 'autenticado')
                 ),
                 array(
@@ -124,7 +124,11 @@ return array(
                     'roles' => array('guest', 'autenticado')
                 ),
                 array(
-                    'controller' => array('Kardex\Controller\Prueba'),
+                    'controller' => array('Kardex\Controller\Lote', 'Kardex\Controller\Ingreso'),
+                    'roles' => array('guest', 'autenticado')
+                ),
+                array(
+                    'controller' => array('Facturacion\Controller\Proveedor','Facturacion\Controller\Factura' ),
                     'roles' => array('guest', 'autenticado')
                 ),
                 array('controller' => 'zfcuser', 'roles' => array()),

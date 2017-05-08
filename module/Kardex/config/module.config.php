@@ -42,7 +42,9 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Kardex\Controller\Inventario' => Kardex\Controller\InventarioController::class
+            'Kardex\Controller\Inventario' => Kardex\Controller\InventarioController::class,
+            'Kardex\Controller\Lote' => Kardex\Controller\LoteController::class,
+            'Kardex\Controller\Ingreso' => Kardex\Controller\IngresoController::class
         ),
         'factories' => array(
             'Kardex\Controller\Index' => Kardex\Factory\IndexControllerFactory::class,
@@ -65,7 +67,8 @@ return array(
         'invokables' => array(
             'Kardex\Model\CountryTable' => 'Kardex\Model\CountryTable',
             'Kardex\Model\StateTable' => 'Kardex\Model\StateTable',
-            'Kardex\Service\Inventario' => 'Kardex\Service\InventarioService'
+            'Kardex\Service\Inventario' => 'Kardex\Service\InventarioService',
+            'Kardex\Service\FiltrosProducto' => 'Kardex\Service\FiltrosProductoService'
         ),
     ),
 );
