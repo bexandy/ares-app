@@ -18,6 +18,7 @@ $(document).ready(function() {
         return false;
     });
 
+
     $("#categoria").on('change', function(event){
         event.preventDefault();
         event.stopImmediatePropagation();
@@ -81,3 +82,4 @@ $(document).ready(function() {
     });
 
 });
+

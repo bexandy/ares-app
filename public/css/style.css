@@ -531,3 +531,20 @@ table.table1{
 .navbar-brand {
     padding: 5px;
 }
+
+.detalle-ingreso {
+    margin-outside: 10px;
+    margin-right: 10px;
+}
+
+.table td:hover {
+    background-color: #F5F5F5;
+}
+
+.icono-documento {
+    margin-bottom: -20px;
+}
+
+input[type="radio"].radio-documento {
+    margin-left: 30px;
+}

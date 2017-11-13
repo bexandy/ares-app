@@ -1,0 +1,21 @@
+<script type="text/javascript">
+    var item = <?php echo $this->item; ?>;
+</script>
+
+<?php echo $this->headScript()->appendFile($this->basePath().'/js/modules/kardex/ingreso-select-um.js'); ?>
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="">
+            <?php foreach ($this->unidadesMedida as $unidadMedida): ?>
+                <div class="list-group">
+                    <a href="javascript:void(0);" class="list-group-item list-group-item-default ">
+                        <h3 id="<?= $unidadMedida->getId() ?>"><?= $unidadMedida->getNombre(); ?></h3>
+                        <p>(<?= $unidadMedida->getSimbolo() ?>)</p>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+

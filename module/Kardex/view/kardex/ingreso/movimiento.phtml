@@ -1,3 +1,10 @@
+<?php $this->headLink()
+    ->prependStylesheet($this->basePath() . '/js/jqueryUI/themes/base/jquery-ui.min.css'); ?>
+<!-- Js -->
+<?php echo $this->headScript()
+    ->appendFile($this->basePath() . '/js/jqueryUI/ui/jquery-ui.min.js')
+    ->appendFile($this->basePath().'/js/jqueryUI/ui/jquery.ui.datepicker-es.js')
+    ->appendFile($this->basePath().'/js/modules/kardex/ingreso-movimiento.js'); ?>
 <?php
 $title = 'Nuevo Documento de Ingreso';
 $this->headTitle($title);
@@ -5,16 +12,18 @@ $this->headTitle($title);
 
 
 <div class="row">
-    <div class="col-sm-2 col-md-2"></div>
-    <div class="col-sm-6 col-md-6">
+    <div class="col-sm-1 col-md-1"></div>
+    <div class="col-sm-10 col-md-10">
         <div class="panel panel-primary">
-            <div class="panel-heading text-center"><h3><?php echo $this->escapeHtml($title); ?></h3></div>
+            <div class="panel-heading text-center"><h2><?php echo $this->escapeHtml($title); ?></h2></div>
             <div class="panel-body">
                 <?php
                 $form = $this->form;
-                $ingreso = $form->get('ingreso');
-                $movimiento = $form->get('movimiento');
-                $detalles = $form->get('detalles');
+                $movimientoIngreso = $form->get('MovimientoIngreso');
+                $ingreso = $movimientoIngreso->get('ingreso');
+                $movimiento = $movimientoIngreso->get('movimiento');
+                $opciones = $movimientoIngreso->get('opciones');
+                $detalles = $movimientoIngreso->get('detalles');
                 $form->setAttribute('action', $this->url('kardex/inventario/wildcard', array('controller' => 'ingreso','action' => 'movimiento')));
                 $form->get('submit')->setAttribute('value', 'Crear');
                 $formLabel = $this->plugin('formLabel');
@@ -31,28 +40,60 @@ $this->headTitle($title);
                     <?php echo $this->formHidden($movimiento->get('fecha'));?>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-2">
+                        <div class="placeholder">
+                            <div class="panel panel-default text-center icono-documento">
+                                <i class="icon-trolleyload" style="font-size: 50px; "></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
                         <div class="form-group">
                             <?php echo $this->formRow($ingreso->get('codigo')); ?>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="form-group">
                             <?php echo $this->formRow($movimiento->get('almacen')); ?>
                         </div>
                     </div>
                 </div>
 
-
-                <div id="detalles" class="row">
-                    <?php echo $this->formCollection($detalles) ?>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-2"></div>
+                <div class="row">
+                    <div class="col-lg-12 text-center text-uppercase"><h4>Detalles del Ingreso</h4></div>
                 </div>
+
+                <div id="detalles-ingreso" class="well well-sm">
+                    <div class="row">
+                        <div class="form-group text-center">
+                            <?php echo $this->formRow($opciones->get('opcLote')); ?>
+                            <?php echo $this->formRow($opciones->get('loteDefault')); ?>
+                            <?php echo $this->formRow($opciones->get('idLoteDefault')); ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 text-center"><h6>Número de Lote</h6></div>
+                        <div class="col-md-3 text-center"><h6>Nombre del Producto</h6></div>
+                        <div class="col-md-1"><h6>Cantidad</h6></div>
+                        <div class="col-md-1"><h6>Unidad</h6></div>
+                        <div class="col-md-2"><h6>Precio de Costo</h6></div>
+                        <div class="col-md-2"><h6>Vencimiento</h6></div>
+                    </div>
+
+                    <div id="detalles">
+                        <?php
+                        echo $this->formCollection($movimientoIngreso->get('detalles'));
+                        ?>
+                        <button><i class="fa fa-remove" style="font-size: 16px; "></i></button>
+                    </div>
+
+                    <p></p>
+                    <div class="row text-center">
+                        <a href="" class="btn btn-success btn-sm" id="agregar"><span class="glyphicon glyphicon-plus">Agregar Producto</a>
+                    </div>
+                </div>
+
+
 
                 <div class="row">
                     <div class="col-lg-12">
@@ -71,7 +112,7 @@ $this->headTitle($title);
             <?php echo $this->form()->closeTag($form); ?>
         </div>
     </div>
-    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-sm-1 col-md-1"></div>
 </div>
 
 <!-- empty div to save dialog temporary -->

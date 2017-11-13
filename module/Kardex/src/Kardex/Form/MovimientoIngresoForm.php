@@ -24,34 +24,26 @@ class MovimientoIngresoForm extends Form
         parent::__construct($name, $options);
         $this->almacenMapper = $almacenMapper;
 
-        $movimientoFieldset = new \Kardex\Form\MovimientoFieldset($this->almacenMapper);
-        $movimientoFieldset->setName('movimiento');
-        $movimientoFieldset->useAsBaseFieldset(false);
+        $movimientoIngresoFieldset = new \Kardex\Form\MovimientoIngresoFieldset($this->almacenMapper);
+        $movimientoIngresoFieldset->setName('MovimientoIngreso');
+        //$movimientoIngresoFieldset->setOption('use_as_base_fieldset',true);
+        //$movimientoIngresoFieldset->setOptions(array('use_as_base_fieldset' => true));
+        $movimientoIngresoFieldset->setUseAsBaseFieldset(true);
 
+
+
+        $this->add($movimientoIngresoFieldset);
+
+/*
         $this->add(array(
-            'name'  =>  'ingreso',
-            'type'  =>  'Kardex\Form\IngresoFieldset',
-            'options' =>    array(
-                'use_as_base_fieldset' => true,
-            ),
-        ));
-
-        $this->add($movimientoFieldset);
-
-        $this->add(array(
-            'type' => 'Zend\Form\Element\Collection',
-            'name' => 'detalles',
+            'name' => 'MovimientoIngreso',
+            'type' => new \Kardex\Form\MovimientoIngresoFieldset($this->almacenMapper),
             'options' => array(
-                'label' => 'Detalles del Movimiento',
-                'should_create_template' => true,
-                'template_placeholder' => '__placeholder__',
-                'allow_add' => true,
-                'target_element' => array(
-                    'type' => 'Kardex\Form\DetallesMovimientoFieldset',
-                ),
-            ),
-        ));
+                'useAsBaseFieldset' => true
+            )
 
+        ));
+*/
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(

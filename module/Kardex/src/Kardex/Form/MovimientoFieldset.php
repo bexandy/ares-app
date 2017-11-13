@@ -10,6 +10,7 @@ namespace Kardex\Form;
 
 
 use Almacen\Model\AlmacenMapper;
+use Kardex\Model\MovimientoEntity;
 use Zend\Db\Adapter\Adapter;
 use Zend\Form\Fieldset;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
@@ -47,7 +48,8 @@ class MovimientoFieldset extends Fieldset implements ServiceLocatorAwareInterfac
         parent::__construct($name, $options);
         $this->almacenMapper = $almacenMapper;
         $this->setAttribute('method', 'post');
-        $this->setHydrator(new ClassMethods());
+        $this->setHydrator(new ClassMethods(false));
+        $this->setObject(new MovimientoEntity());
 
         $this->add(array(
             'type'  =>  'hidden',

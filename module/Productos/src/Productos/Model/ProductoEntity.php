@@ -380,5 +380,9 @@ class ProductoEntity
         $this->imagen = $imagen;
     }
 
+    public function toArray()
+    {
+        return array(get_object_vars($this));
+    }
 
 }

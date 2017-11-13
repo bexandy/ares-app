@@ -1,0 +1,12 @@
+<script type="text/javascript">
+    var item = <?php echo $this->item; ?>;
+</script>
+
+<?php echo $this->headScript()
+    ->appendFile($this->basePath().'/js/modules/kardex/ingreso-select-producto.js'); ?>
+
+
+<div id="getProductos"></div>
+
+
+

@@ -1,0 +1,42 @@
+<?php echo $this->headScript()
+    ->appendFile($this->basePath().'/js/modules/kardex/ingreso-get-producto.js'); ?>
+<div >
+
+<script type="text/javascript">
+    var is_xmlhttprequest   = <?php echo $this->is_xmlhttprequest; ?>;
+</script>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="well well-sm">
+                <?php $filtros->setAttribute('action', ''); ?>
+                <?php $filtros->prepare(); ?>
+                <?php echo $this->form()->openTag($filtros); ?>
+                <?php
+                echo $this->formRow($filtros->get('marca'));
+                echo ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                echo $this->formRow($filtros->get('categoria'));
+                echo ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                ?>
+                <?php echo $this->form()->closeTag(); ?>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="productos">
+
+        <div class="list-group">
+            <?php foreach ($productos as $producto): ?>
+                <a href="javascript:void(0);" class="list-group-item" value="<?php echo $producto['id'] ?>">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4"><?php echo $producto['nombmarca'] ?></div>
+                        <div class="col-sm-4 col-md-4"><?php echo $producto['nombcategoria'] ?></div>
+                        <div class="col-sm-4 col-md-4"><?php echo $producto['nombre'] ?></div>
+                    </div>
+                </a>
+            <?php endforeach ?>
+        </div>
+
+    </div>
+</div>

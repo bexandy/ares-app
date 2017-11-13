@@ -17,6 +17,9 @@ class DetallesMovimientoEntity
     protected $lote;
     protected $cantidad;
     protected $unidadmedida;
+    protected $um;
+    protected $costo;
+    protected $vencimiento;
 
     /**
      * @return mixed

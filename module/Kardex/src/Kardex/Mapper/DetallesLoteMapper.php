@@ -74,6 +74,7 @@ class DetallesLoteMapper
 
         return $result;
     }
+
     public function getDetallesLote($where = array(), $paging = false)
     {
         $this->sql->setTable('vista_detalles_lote');

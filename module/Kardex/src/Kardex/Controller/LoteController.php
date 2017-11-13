@@ -75,7 +75,7 @@ class LoteController extends AbstractActionController
     {
         $loteMapper = $this->getLoteMapper();
         $lastCodigo = $loteMapper->getLastCodigo($tipo);
-        $codigo = $this->generateCodigo($lastCodigo,$tipo);
+        $codigo = $loteMapper->generateCodigo($lastCodigo,$tipo);
         $loteEntity = new LoteEntity();
 
         $loteEntity->setNumLote($codigo);
@@ -94,26 +94,7 @@ class LoteController extends AbstractActionController
         return true;
     }
 
-    public function generateCodigo($ultimoCodigo, $tipo)
-    {
-        $prefijo = "";
-        if ((int) $tipo == 1) {
-            $prefijo = 'LOT';
-        }
-        if ((int) $tipo == 2) {
-            $prefijo = 'DET';
-        }
-        $ultimaSecuencia = substr($ultimoCodigo,-8);
-        if (($ultimaSecuencia == 00000000) || ($ultimaSecuencia === 99999999)){
-            $nuevoCodigo = (string) $prefijo.date('Ymd').'-00000001';
-            return $nuevoCodigo;
-        } else {
-            //$ultimaSecuencia = substr($ultimoCodigo,-8);
-            $nuevaSecuencia =  (int) $ultimaSecuencia + 1;
-            $nuevoCodigo = $prefijo.date('Ymd').'-'.str_pad($nuevaSecuencia,8,'0',STR_PAD_LEFT);
-            return $nuevoCodigo;
-        }
-    }
+
 
     public function addDetallesAction()
     {

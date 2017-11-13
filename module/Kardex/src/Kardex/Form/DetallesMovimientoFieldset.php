@@ -9,6 +9,7 @@
 namespace Kardex\Form;
 
 
+use Kardex\Model\DetallesMovimientoEntity;
 use Zend\Form\Fieldset;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
@@ -24,7 +25,8 @@ class DetallesMovimientoFieldset extends Fieldset
 
         $this->setAttribute('method', 'post');
         // $this->setInputFilter(new CategoriaFilter());
-        $this->setHydrator(new ClassMethods());
+        $this->setHydrator(new ClassMethods(false))
+            ->setObject(new DetallesMovimientoEntity());
 
         $this->add(array(
             'type'  =>  'hidden',
@@ -34,11 +36,17 @@ class DetallesMovimientoFieldset extends Fieldset
         $this->add(array(
             'type'  =>  'hidden',
             'name'  =>  'movimiento',
+            'attributes' => array(
+                'required' => true,
+            )
         ));
 
         $this->add(array(
             'type'  =>  'hidden',
             'name'  =>  'producto',
+            'attributes' => array(
+                'required' => true,
+            )
         ));
 
         $this->add(array(
@@ -47,22 +55,81 @@ class DetallesMovimientoFieldset extends Fieldset
         ));
 
         $this->add(array(
+            'type'  =>  'hidden',
+            'name'  =>  'um',
+            'attributes' => array(
+                'required' => true,
+            )
+        ));
+
+        $this->add(array(
+            'type'  =>  'text',
+            'name'  =>  'numlote',
+            'attributes' => array(
+                'placeholder' => 'Lote',
+                'required' => true,
+                'readonly' => 'readonly',
+                'size' => 18,
+                'class' => 'detalle-ingreso'
+            )
+        ));
+
+        $this->add(array(
+            'type'  =>  'text',
+            'name'  =>  'nombproducto',
+            'attributes' => array(
+                'placeholder' => 'Producto',
+                'required' => true,
+                'readonly' => 'readonly',
+                'size' => 30,
+                'class' => 'detalle-ingreso'
+            )
+        ));
+
+        $this->add(array(
             'type'  =>  'text',
             'name'  =>  'cantidad',
-            'options'   =>  array(
-                'label' =>  'Cantidad del Producto',
-            ),
+            'attributes' => array(
+                'placeholder' => 'Cantidad',
+                'required' => true,
+                'size' => 5,
+                'class' => 'detalle-ingreso'
+            )
         ));
 
         $this->add(array(
             'type'  =>  'text',
             'name'  =>  'unidadmedida',
-            'options'   =>  array(
-                'label' =>  'Unidad de Medida',
-            ),
             'attributes' => array(
-                'id' => 'unidadmedida',
+                'placeholder' => 'UM',
+                'required' => true,
+                'readonly' => 'readonly',
+                'size' => 5,
+                'class' => 'detalle-ingreso'
             )
         ));
+
+        $this->add(array(
+            'type'  =>  'text',
+            'name'  =>  'costo',
+            'attributes' => array(
+                'placeholder' => 'Precio',
+                'required' => true,
+                'size' => 10,
+                'class' => 'detalle-ingreso'
+            )
+        ));
+
+        $this->add(array(
+            'type'  =>  'text',
+            'name'  =>  'vencimiento',
+            'attributes' => array(
+                'placeholder' => 'FVenc',
+                'readonly' => 'readonly',
+                'size' => 10,
+                'class' => 'detalle-ingreso datepicker'
+            )
+        ));
+
     }
 }

@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    var is_xmlhttprequest   = <?php echo $this->is_xmlhttprequest; ?>;
+</script>
+
+<?php echo $this->headScript()->appendFile($this->basePath().'/js/modules/kardex/ingreso-select-default-lote.js'); ?>
+
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Número de Lote</th>
+            <th>Número de Lote</th>
+            <th>Número de Lote</th>
+            <th>Número de Lote</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $maxfilas = count($lotes)/4 ?>
+        <?php for ($fila = 0; $fila <= $maxfilas; $fila++) : ?>
+            <tr>
+                <?php for ($col = 0; $col < 4; $col++): ?>
+
+                    <?php $pointer = ($fila*4)+$col ?>
+                    <?php if (array_key_exists($pointer,$lotes)) :?>
+                        <td><a href="javascript:void(0);" class="lote" id="<?php echo $lotes[$pointer]['id'] ?>"><?php echo $lotes[$pointer]['num_lote']; ?></a></td>
+                    <?php endif ?>
+                <?php endfor ?>
+            </tr>
+        <?php endfor ?>
+        </tbody>
+    </table>
+</div>

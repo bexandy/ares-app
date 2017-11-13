@@ -127,4 +127,43 @@ class LoteMapper
         return $lote;
     }
 
+    public function getLotesBy($where = array())
+    {
+        $this->sql->setTable('lotes');
+        $select = $this->sql->select();
+        if (count($where) > 0) {
+            $select->where($where);
+        }
+
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $results = $statement->execute();
+
+        $entityPrototype = new LoteEntity();
+        $hydrator = new ClassMethods();
+        $resultset = new HydratingResultSet($hydrator, $entityPrototype);
+        $resultset->initialize($results);
+        return $resultset;
+    }
+
+    public function generateCodigo($ultimoCodigo, $tipo)
+    {
+        $prefijo = "";
+        if ((int) $tipo == 1) {
+            $prefijo = 'LOT';
+        }
+        if ((int) $tipo == 2) {
+            $prefijo = 'DET';
+        }
+        $ultimaSecuencia = substr($ultimoCodigo,-8);
+        if (($ultimaSecuencia == 00000000) || ($ultimaSecuencia === 99999999)){
+            $nuevoCodigo = (string) $prefijo.date('Ymd').'-00000001';
+            return $nuevoCodigo;
+        } else {
+            //$ultimaSecuencia = substr($ultimoCodigo,-8);
+            $nuevaSecuencia =  (int) $ultimaSecuencia + 1;
+            $nuevoCodigo = $prefijo.date('Ymd').'-'.str_pad($nuevaSecuencia,8,'0',STR_PAD_LEFT);
+            return $nuevoCodigo;
+        }
+    }
+
 }

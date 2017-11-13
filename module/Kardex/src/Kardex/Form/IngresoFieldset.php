@@ -9,6 +9,7 @@
 namespace Kardex\Form;
 
 
+use Kardex\Model\IngresoEntity;
 use Zend\Form\Fieldset;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
@@ -22,7 +23,8 @@ class IngresoFieldset extends Fieldset
     {
         parent::__construct($name, $options);
         $this->setAttribute('method', 'post');
-        $this->setHydrator(new ClassMethods());
+        $this->setHydrator(new ClassMethods(false))
+            ->setObject(new IngresoEntity());
 
         $this->add(array(
             'type'  =>  'hidden',
@@ -55,7 +57,7 @@ class IngresoFieldset extends Fieldset
             ),
             'attributes' => array(
                 'class' => 'form-control',
-                'cols' => 60,
+                'cols' => 120,
                 'rows' => 3
             )
         ));
